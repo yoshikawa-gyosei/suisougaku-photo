@@ -1,0 +1,175 @@
+https://github.com/?utm_source=chatgpt.com
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>東海ウィンドフェスティバル 写真</title>
+
+<style>
+
+body {
+    margin: 0;
+    padding: 20px;
+    background: #f5f7fa;
+    font-family: Arial, sans-serif;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+.photos {
+    max-width: 1200px;
+    margin: auto;
+
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 10px;
+}
+
+.photos img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+}
+
+.photos img:hover {
+    opacity: 0.8;
+}
+
+
+/* 大きく表示 */
+
+.modal {
+    display: none;
+
+    position: fixed;
+
+    left: 0;
+    top: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background: rgba(0, 0, 0, 0.9);
+
+    justify-content: center;
+    align-items: center;
+}
+
+.modal img {
+    max-width: 95%;
+    max-height: 90%;
+}
+
+.close {
+    position: absolute;
+
+    right: 25px;
+    top: 10px;
+
+    color: white;
+
+    font-size: 40px;
+
+    cursor: pointer;
+}
+
+
+/* スマホ */
+
+@media (max-width: 600px) {
+
+    .photos {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+<h1>🎺 東海ウィンドフェスティバル 写真</h1>
+
+
+<div class="photos" id="photos"></div>
+
+
+<div class="modal" id="modal">
+
+    <span class="close" onclick="closePhoto()">×</span>
+
+    <img id="largePhoto">
+
+</div>
+
+
+<script>
+
+const photos = document.getElementById("photos");
+
+
+// 写真の枚数
+const totalPhotos = 400;
+
+
+// CloudinaryのCloud Name
+const cloudName = "avfwub8z";
+
+
+// 写真を作る
+for (let i = 1; i <= totalPhotos; i++) {
+
+    const number = String(i).padStart(3, "0");
+
+    const img = document.createElement("img");
+
+    img.src =
+        "https://res.cloudinary.com/" +
+        cloudName +
+        "/image/upload/01_" +
+        number +
+        ".jpg";
+
+    img.loading = "lazy";
+
+
+    img.onclick = function() {
+
+        document.getElementById("largePhoto").src = this.src;
+
+        document.getElementById("modal").style.display = "flex";
+
+    };
+
+
+    photos.appendChild(img);
+
+}
+
+
+function closePhoto() {
+
+    document.getElementById("modal").style.display = "none";
+
+}
+
+</script>
+
+</body>
+
+</html>
+```
