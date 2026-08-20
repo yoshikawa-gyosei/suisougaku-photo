@@ -41,7 +41,7 @@ body {
 
 
 /* =========================
-   メイン・行事パスワード画面
+   パスワード画面
 ========================= */
 
 .password-screen {
@@ -52,7 +52,7 @@ body {
 
     z-index: 9999;
 
-    display: flex;
+    display: none;
 
     justify-content: center;
 
@@ -70,8 +70,6 @@ body {
 }
 
 
-/* パスワードカード */
-
 .password-box {
 
     width: 100%;
@@ -80,8 +78,7 @@ body {
 
     padding: 42px 35px;
 
-    background:
-        rgba(255,255,255,0.97);
+    background: rgba(255,255,255,0.97);
 
     border-radius: 22px;
 
@@ -94,8 +91,6 @@ body {
 }
 
 
-/* 鍵マーク */
-
 .password-icon {
 
     font-size: 42px;
@@ -104,8 +99,6 @@ body {
 
 }
 
-
-/* TOKAI GYOSEI */
 
 .password-sub {
 
@@ -122,8 +115,6 @@ body {
 }
 
 
-/* タイトル */
-
 .password-box h1 {
 
     margin: 0;
@@ -134,8 +125,6 @@ body {
 
 }
 
-
-/* 説明 */
 
 .password-description {
 
@@ -150,8 +139,6 @@ body {
 
 }
 
-
-/* 入力欄 */
 
 .password-input {
 
@@ -172,10 +159,6 @@ body {
 
     background: #f8fafc;
 
-    transition:
-        border 0.2s,
-        box-shadow 0.2s;
-
 }
 
 
@@ -189,8 +172,6 @@ body {
 
 }
 
-
-/* ボタン */
 
 .password-button {
 
@@ -214,10 +195,6 @@ body {
 
     cursor: pointer;
 
-    transition:
-        background 0.2s,
-        transform 0.2s;
-
 }
 
 
@@ -228,15 +205,22 @@ body {
 }
 
 
-.password-button:active {
+.password-back {
 
-    transform:
-        scale(0.98);
+    margin-top: 15px;
+
+    border: none;
+
+    background: none;
+
+    color: #7a858f;
+
+    cursor: pointer;
+
+    font-size: 12px;
 
 }
 
-
-/* エラー */
 
 .error-message {
 
@@ -311,8 +295,7 @@ body {
 
     font-size: 14px;
 
-    color:
-        rgba(255,255,255,0.82);
+    color: rgba(255,255,255,0.82);
 
 }
 
@@ -420,7 +403,7 @@ body {
 
 
 /* =========================
-   行事代表写真
+   行事写真
 ========================= */
 
 .event-icon {
@@ -490,7 +473,7 @@ body {
 
 
 /* =========================
-   写真を見るボタン
+   ボタン
 ========================= */
 
 .btn {
@@ -523,10 +506,6 @@ body {
     font-size: 14px;
 
     cursor: pointer;
-
-    transition:
-        background 0.2s,
-        transform 0.2s;
 
 }
 
@@ -590,7 +569,6 @@ body {
 ========================= */
 
 @media (max-width: 600px) {
-
 
     .password-box {
 
@@ -657,13 +635,6 @@ body {
     }
 
 
-    .section-title {
-
-        margin-bottom: 22px;
-
-    }
-
-
     .section-title h2 {
 
         font-size: 21px;
@@ -721,12 +692,7 @@ body {
 }
 
 
-/* =========================
-   かなり小さいスマホ
-========================= */
-
 @media (max-width: 400px) {
-
 
     .event-card {
 
@@ -760,56 +726,43 @@ body {
 
 
 <!-- ==================================================
-     メインページのパスワード画面
+     メインページのパスワード
 ================================================== -->
 
 <div
     class="password-screen"
     id="mainPasswordScreen"
+    style="display:flex;"
 >
 
 
     <div class="password-box">
 
-
         <div class="password-icon">
-
             🔐
-
         </div>
-
 
         <div class="password-sub">
-
             TOKAI GYOSEI
-
         </div>
 
-
         <h1>
-
             PHOTO GALLERY
-
         </h1>
-
 
         <p class="password-description">
 
             吹奏楽部の写真をご覧いただくには<br>
-
             パスワードを入力してください。
 
         </p>
-
 
         <input
             type="password"
             class="password-input"
             id="mainPasswordInput"
             placeholder="パスワード"
-            autocomplete="off"
         >
-
 
         <button
             class="password-button"
@@ -820,12 +773,10 @@ body {
 
         </button>
 
-
         <div
             class="error-message"
             id="mainError"
         ></div>
-
 
     </div>
 
@@ -834,13 +785,12 @@ body {
 
 
 <!-- ==================================================
-     行事のパスワード画面
+     行事パスワード画面
 ================================================== -->
 
 <div
     class="password-screen"
     id="eventPasswordScreen"
-    style="display:none;"
 >
 
 
@@ -863,7 +813,7 @@ body {
 
         <h1 id="eventPasswordTitle">
 
-            PHOTO GALLERY
+            写真を見る
 
         </h1>
 
@@ -884,7 +834,6 @@ body {
             class="password-input"
             id="eventPasswordInput"
             placeholder="パスワード"
-            autocomplete="off"
         >
 
 
@@ -905,15 +854,8 @@ body {
 
 
         <button
+            class="password-back"
             onclick="closeEventPassword()"
-            style="
-                margin-top:15px;
-                background:none;
-                border:none;
-                color:#7a858f;
-                cursor:pointer;
-                font-size:12px;
-            "
         >
 
             ← 行事選択に戻る
@@ -973,18 +915,16 @@ body {
         <span>EVENT PHOTO</span>
 
         <h2>
-
             行事を選択してください
-
         </h2>
 
     </div>
 
 
 
-    <!-- ==================================================
+    <!-- =========================
          東海ウィンドフェスティバル
-    ================================================== -->
+    ========================= -->
 
     <div class="event-card">
 
@@ -1035,9 +975,9 @@ body {
 
 
 
-    <!-- ==================================================
+    <!-- =========================
          きらめきコンサート
-    ================================================== -->
+    ========================= -->
 
     <div class="event-card">
 
@@ -1123,21 +1063,10 @@ body {
    メインページのパスワード
 ================================================== */
 
-
-/*
-   ★ メインページのパスワード
-
-   好きなものに変更してください
-*/
-
 const mainPassword =
     "gyosei2026";
 
 
-
-/* ==================================================
-   メインページに入る
-================================================== */
 
 function enterMainGallery() {
 
@@ -1164,7 +1093,6 @@ function enterMainGallery() {
 
     }
 
-
     else {
 
 
@@ -1187,9 +1115,7 @@ function enterMainGallery() {
 
 
 
-/* ==================================================
-   メインパスワード Enterキー
-================================================== */
+/* Enterキー */
 
 document.getElementById(
     "mainPasswordInput"
@@ -1209,7 +1135,7 @@ document.getElementById(
 
 
 /* ==================================================
-   行事パスワード用の変数
+   行事パスワード
 ================================================== */
 
 let selectedPassword = "";
@@ -1218,16 +1144,12 @@ let selectedFolder = "";
 
 
 
-/* ==================================================
-   行事パスワード画面を開く
-================================================== */
+/* 行事パスワード画面を開く */
 
 function openEventPassword(
 
     eventName,
-
     password,
-
     folder
 
 ) {
@@ -1235,7 +1157,6 @@ function openEventPassword(
 
     selectedPassword =
         password;
-
 
     selectedFolder =
         folder;
@@ -1245,13 +1166,6 @@ function openEventPassword(
         "eventPasswordTitle"
     ).textContent =
         eventName;
-
-
-    document.getElementById(
-        "eventPasswordDescription"
-    ).innerHTML =
-        "写真を見るには<br>" +
-        "パスワードを入力してください。";
 
 
     document.getElementById(
@@ -1277,9 +1191,7 @@ function openEventPassword(
 
 
 
-/* ==================================================
-   行事パスワード確認
-================================================== */
+/* パスワード確認 */
 
 function enterEventGallery() {
 
@@ -1305,7 +1217,6 @@ function enterEventGallery() {
 
     }
 
-
     else {
 
 
@@ -1328,9 +1239,7 @@ function enterEventGallery() {
 
 
 
-/* ==================================================
-   行事パスワード Enterキー
-================================================== */
+/* Enterキー */
 
 document.getElementById(
     "eventPasswordInput"
@@ -1349,9 +1258,7 @@ document.getElementById(
 
 
 
-/* ==================================================
-   行事パスワード画面を閉じる
-================================================== */
+/* 戻る */
 
 function closeEventPassword() {
 
