@@ -151,7 +151,7 @@ body {
 
     border-radius: 10px;
 
-    font-size: 16px;
+    font-size: 18px;
 
     text-align: center;
 
@@ -403,7 +403,7 @@ body {
 
 
 /* =========================
-   行事の代表写真
+   行事写真
 ========================= */
 
 .event-icon {
@@ -785,15 +785,14 @@ body {
         </p>
 
 
-        <!--
-            メインはパスワードを隠す
-        -->
+        <!-- メインは文字を隠す -->
 
         <input
             type="password"
             class="password-input"
             id="mainPasswordInput"
             placeholder="パスワード"
+            autocomplete="off"
         >
 
 
@@ -866,8 +865,8 @@ body {
 
 
         <!--
-            行事は普通に文字を表示
-            type="text" にしている
+            行事パスワードは
+            普通に文字が見える
         -->
 
         <input
@@ -875,6 +874,8 @@ body {
             class="password-input"
             id="eventPasswordInput"
             placeholder="パスワード"
+            autocomplete="off"
+            inputmode="text"
         >
 
 
@@ -952,7 +953,6 @@ body {
 
 
     <div class="section-title">
-
 
         <span>
 
@@ -1122,10 +1122,11 @@ body {
 ================================================== */
 
 
-/* メインのパスワード */
+/* メインパスワード */
 
 const mainPassword =
     "gyosei2026";
+
 
 
 function enterMainGallery() {
@@ -1175,6 +1176,7 @@ function enterMainGallery() {
 }
 
 
+
 /* メインでEnter */
 
 document.getElementById(
@@ -1204,7 +1206,7 @@ let selectedFolder = "";
 
 
 
-/* 行事パスワード画面を開く */
+/* 行事パスワード画面 */
 
 function openEventPassword(
 
@@ -1245,9 +1247,23 @@ function openEventPassword(
         "flex";
 
 
-    document.getElementById(
-        "eventPasswordInput"
-    ).focus();
+    /*
+
+       少し待ってから
+       入力欄を選択
+
+       日本語入力でも
+       入力しやすくする
+
+    */
+
+    setTimeout(function() {
+
+        document.getElementById(
+            "eventPasswordInput"
+        ).focus();
+
+    }, 100);
 
 }
 
@@ -1298,6 +1314,7 @@ function enterEventGallery() {
     }
 
 }
+
 
 
 /* 行事でEnter */
