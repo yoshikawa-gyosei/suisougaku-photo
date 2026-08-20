@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ja">
 
@@ -130,6 +129,10 @@ const totalPhotos = 333;
 const cloudName = "avfwub8z";
 
 
+// 読み込めなかった写真
+const missingPhotos = [];
+
+
 // 写真を作る
 for (let i = 1; i <= totalPhotos; i++) {
 
@@ -147,6 +150,19 @@ for (let i = 1; i <= totalPhotos; i++) {
     img.loading = "lazy";
 
 
+    // 写真が読み込めなかった場合
+    img.onerror = function() {
+
+        missingPhotos.push(number);
+
+        this.style.display = "none";
+
+        updateMissingPhotos();
+
+    };
+
+
+    // 写真をクリックしたとき
     img.onclick = function() {
 
         document.getElementById("largePhoto").src = this.src;
@@ -161,6 +177,46 @@ for (let i = 1; i <= totalPhotos; i++) {
 }
 
 
+// 読み込めなかった写真を表示
+function updateMissingPhotos() {
+
+    let message = document.getElementById("missingMessage");
+
+
+    if (!message) {
+
+        message = document.createElement("div");
+
+        message.id = "missingMessage";
+
+        message.style.background = "#ffe5e5";
+
+        message.style.color = "#c00000";
+
+        message.style.padding = "15px";
+
+        message.style.margin = "20px auto";
+
+        message.style.maxWidth = "1200px";
+
+        message.style.borderRadius = "8px";
+
+        message.style.fontWeight = "bold";
+
+
+        document.body.insertBefore(message, photos);
+
+    }
+
+
+    message.textContent =
+        "読み込めなかった写真：" +
+        missingPhotos.join("、");
+
+}
+
+
+// 大きく表示を閉じる
 function closePhoto() {
 
     document.getElementById("modal").style.display = "none";
@@ -169,7 +225,7 @@ function closePhoto() {
 
 </script>
 
+
 </body>
 
 </html>
-```
