@@ -90,7 +90,7 @@ h1 {
 
 .modal img {
     max-width: 95%;
-    max-height: 80%;
+    max-height: 78%;
 
     object-fit: contain;
 
@@ -126,7 +126,7 @@ h1 {
 
     color: #333;
 
-    text-decoration: none;
+    border: none;
 
     border-radius: 8px;
 
@@ -135,12 +135,12 @@ h1 {
     font-weight: bold;
 
     cursor: pointer;
-
-    display: inline-block;
 }
 
 .saveButton:hover {
+
     background: #eeeeee;
+
 }
 
 
@@ -149,17 +149,25 @@ h1 {
 @media (max-width: 600px) {
 
     .photos {
+
         grid-template-columns: repeat(2, 1fr);
+
     }
 
     .modal img {
+
         max-width: 95%;
+
         max-height: 70%;
+
     }
 
     .saveButton {
+
         font-size: 16px;
+
         padding: 12px 20px;
+
     }
 
 }
@@ -178,7 +186,9 @@ h1 {
 <!-- 写真の確認結果 -->
 
 <div id="checkResult">
+
     写真を確認しています……
+
 </div>
 
 
@@ -187,9 +197,10 @@ h1 {
 <div class="photos" id="photos"></div>
 
 
-<!-- 大きく表示する画面 -->
+<!-- 大きく表示 -->
 
 <div class="modal" id="modal">
+
 
     <!-- 閉じる -->
 
@@ -203,15 +214,16 @@ h1 {
 
     <!-- 保存ボタン -->
 
-    <a
+    <button
         id="saveButton"
         class="saveButton"
-        href="#"
-        target="_blank"
-        download
+        type="button"
     >
+
         📥 写真を保存
-    </a>
+
+    </button>
+
 
 </div>
 
@@ -219,15 +231,24 @@ h1 {
 <script>
 
 
-const photos = document.getElementById("photos");
+const photos =
+    document.getElementById("photos");
 
-const checkResult = document.getElementById("checkResult");
 
-const modal = document.getElementById("modal");
+const checkResult =
+    document.getElementById("checkResult");
 
-const largePhoto = document.getElementById("largePhoto");
 
-const saveButton = document.getElementById("saveButton");
+const modal =
+    document.getElementById("modal");
+
+
+const largePhoto =
+    document.getElementById("largePhoto");
+
+
+const saveButton =
+    document.getElementById("saveButton");
 
 
 // 写真の枚数
@@ -250,6 +271,11 @@ const missingPhotos = [];
 let checkedPhotos = 0;
 
 
+// 現在表示している写真番号
+
+let currentNumber = "";
+
+
 
 /*
  * 写真を作る
@@ -258,10 +284,12 @@ let checkedPhotos = 0;
 for (let i = 1; i <= totalPhotos; i++) {
 
 
-    const number = String(i).padStart(3, "0");
+    const number =
+        String(i).padStart(3, "0");
 
 
-    const img = document.createElement("img");
+    const img =
+        document.createElement("img");
 
 
     const imageUrl =
@@ -276,7 +304,7 @@ for (let i = 1; i <= totalPhotos; i++) {
 
 
     /*
-     * 写真を読み込む
+     * 写真を読み込めた場合
      */
 
     img.onload = function() {
@@ -311,11 +339,15 @@ for (let i = 1; i <= totalPhotos; i++) {
 
     img.onclick = function() {
 
+
+        currentNumber = number;
+
+
         largePhoto.src = this.src;
 
-        saveButton.href = this.src;
 
         modal.style.display = "flex";
+
 
     };
 
@@ -327,44 +359,151 @@ for (let i = 1; i <= totalPhotos; i++) {
 
 
 /*
- * 確認完了
+ * 333枚の確認
  */
 
 function checkComplete() {
 
 
-    if (checkedPhotos === totalPhotos) {
+    if (checkedPhotos !== totalPhotos) {
+
+        return;
+
+    }
 
 
-        if (missingPhotos.length === 0) {
+    if (missingPhotos.length === 0) {
 
 
-            checkResult.textContent =
-                "✅ 333枚すべての写真があります。";
+        checkResult.textContent =
+            "✅ 333枚すべての写真があります。";
 
 
-            checkResult.style.background = "#d9f7df";
-
-            checkResult.style.color = "#187a2f";
-
-
-        } else {
+        checkResult.style.background =
+            "#d9f7df";
 
 
-            checkResult.textContent =
-                "⚠️ 入っていない写真：" +
-                missingPhotos.join("、");
+        checkResult.style.color =
+            "#187a2f";
 
 
-            checkResult.style.background = "#ffe0e0";
+    } else {
 
-            checkResult.style.color = "#c00000";
 
-        }
+        checkResult.textContent =
+            "⚠️ 入っていない写真：" +
+            missingPhotos.join("、");
+
+
+        checkResult.style.background =
+            "#ffe0e0";
+
+
+        checkResult.style.color =
+            "#c00000";
 
     }
 
 }
+
+
+
+/*
+ * 写真を保存
+ */
+
+saveButton.onclick = async function() {
+
+
+    if (!largePhoto.src) {
+
+        return;
+
+    }
+
+
+    try {
+
+
+        /*
+         * Cloudinaryから画像を取得
+         */
+
+        const response =
+            await fetch(largePhoto.src);
+
+
+        if (!response.ok) {
+
+            throw new Error();
+
+        }
+
+
+        const blob =
+            await response.blob();
+
+
+        /*
+         * 一時的なURLを作る
+         */
+
+        const downloadUrl =
+            URL.createObjectURL(blob);
+
+
+        /*
+         * ダウンロード用リンクを作る
+         */
+
+        const link =
+            document.createElement("a");
+
+
+        link.href =
+            downloadUrl;
+
+
+        link.download =
+            "東海ウィンドフェスティバル_" +
+            currentNumber +
+            ".jpg";
+
+
+        document.body.appendChild(link);
+
+
+        link.click();
+
+
+        link.remove();
+
+
+        /*
+         * 一時URLを削除
+         */
+
+        URL.revokeObjectURL(downloadUrl);
+
+
+    } catch (error) {
+
+
+        /*
+         * 自動保存できない場合
+         */
+
+        alert(
+            "自動保存できませんでした。\n\n" +
+            "開いた写真を\n" +
+            "パソコン：右クリック → 名前を付けて画像を保存\n" +
+            "スマホ：写真を長押し → 保存\n" +
+            "で保存してください。"
+        );
+
+    }
+
+};
 
 
 
@@ -385,6 +524,7 @@ function closePhoto() {
  */
 
 modal.onclick = function(event) {
+
 
     if (event.target === modal) {
 
