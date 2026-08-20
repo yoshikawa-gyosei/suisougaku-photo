@@ -75,7 +75,7 @@ h1 {
     width: 100%;
     height: 100%;
 
-    background: rgba(0, 0, 0, 0.9);
+    background: rgba(0, 0, 0, 0.92);
 
     justify-content: center;
     align-items: center;
@@ -90,7 +90,7 @@ h1 {
 
 .modal img {
     max-width: 95%;
-    max-height: 78%;
+    max-height: 75%;
 
     object-fit: contain;
 
@@ -103,8 +103,8 @@ h1 {
 .close {
     position: absolute;
 
-    right: 25px;
-    top: 10px;
+    right: 20px;
+    top: 5px;
 
     color: white;
 
@@ -120,7 +120,7 @@ h1 {
 
     margin-top: 20px;
 
-    padding: 12px 25px;
+    padding: 14px 28px;
 
     background: white;
 
@@ -128,19 +128,21 @@ h1 {
 
     border: none;
 
-    border-radius: 8px;
+    border-radius: 10px;
 
     font-size: 18px;
 
     font-weight: bold;
 
     cursor: pointer;
+
+    text-decoration: none;
+
+    display: inline-block;
 }
 
 .saveButton:hover {
-
     background: #eeeeee;
-
 }
 
 
@@ -148,26 +150,23 @@ h1 {
 
 @media (max-width: 600px) {
 
+    body {
+        padding: 10px;
+    }
+
     .photos {
-
         grid-template-columns: repeat(2, 1fr);
-
+        gap: 6px;
     }
 
     .modal img {
-
         max-width: 95%;
-
         max-height: 70%;
-
     }
 
     .saveButton {
-
         font-size: 16px;
-
-        padding: 12px 20px;
-
+        padding: 13px 22px;
     }
 
 }
@@ -183,12 +182,10 @@ h1 {
 <h1>🎺 東海ウィンドフェスティバル 写真</h1>
 
 
-<!-- 写真の確認結果 -->
+<!-- 333枚の確認結果 -->
 
 <div id="checkResult">
-
     写真を確認しています……
-
 </div>
 
 
@@ -212,17 +209,16 @@ h1 {
     <img id="largePhoto">
 
 
-    <!-- 保存ボタン -->
+    <!-- 保存 -->
 
-    <button
+    <a
         id="saveButton"
         class="saveButton"
-        type="button"
+        href="#"
+        target="_blank"
     >
-
         📥 写真を保存
-
-    </button>
+    </a>
 
 
 </div>
@@ -271,7 +267,7 @@ const missingPhotos = [];
 let checkedPhotos = 0;
 
 
-// 現在表示している写真番号
+// 現在の写真番号
 
 let currentNumber = "";
 
@@ -304,7 +300,7 @@ for (let i = 1; i <= totalPhotos; i++) {
 
 
     /*
-     * 写真を読み込めた場合
+     * 写真が読み込めた
      */
 
     img.onload = function() {
@@ -317,7 +313,7 @@ for (let i = 1; i <= totalPhotos; i++) {
 
 
     /*
-     * 写真がない場合
+     * 写真がない
      */
 
     img.onerror = function() {
@@ -334,7 +330,7 @@ for (let i = 1; i <= totalPhotos; i++) {
 
 
     /*
-     * 写真をクリック
+     * 写真をタップ
      */
 
     img.onclick = function() {
@@ -343,11 +339,25 @@ for (let i = 1; i <= totalPhotos; i++) {
         currentNumber = number;
 
 
-        largePhoto.src = this.src;
+        largePhoto.src = imageUrl;
+
+
+        /*
+         * 保存用URL
+         *
+         * Cloudinaryに
+         * ダウンロード用として指定
+         */
+
+        saveButton.href =
+            "https://res.cloudinary.com/" +
+            cloudName +
+            "/image/upload/fl_attachment/01_" +
+            number +
+            ".jpg";
 
 
         modal.style.display = "flex";
-
 
     };
 
@@ -409,105 +419,6 @@ function checkComplete() {
 
 
 /*
- * 写真を保存
- */
-
-saveButton.onclick = async function() {
-
-
-    if (!largePhoto.src) {
-
-        return;
-
-    }
-
-
-    try {
-
-
-        /*
-         * Cloudinaryから画像を取得
-         */
-
-        const response =
-            await fetch(largePhoto.src);
-
-
-        if (!response.ok) {
-
-            throw new Error();
-
-        }
-
-
-        const blob =
-            await response.blob();
-
-
-        /*
-         * 一時的なURLを作る
-         */
-
-        const downloadUrl =
-            URL.createObjectURL(blob);
-
-
-        /*
-         * ダウンロード用リンクを作る
-         */
-
-        const link =
-            document.createElement("a");
-
-
-        link.href =
-            downloadUrl;
-
-
-        link.download =
-            "東海ウィンドフェスティバル_" +
-            currentNumber +
-            ".jpg";
-
-
-        document.body.appendChild(link);
-
-
-        link.click();
-
-
-        link.remove();
-
-
-        /*
-         * 一時URLを削除
-         */
-
-        URL.revokeObjectURL(downloadUrl);
-
-
-    } catch (error) {
-
-
-        /*
-         * 自動保存できない場合
-         */
-
-        alert(
-            "自動保存できませんでした。\n\n" +
-            "開いた写真を\n" +
-            "パソコン：右クリック → 名前を付けて画像を保存\n" +
-            "スマホ：写真を長押し → 保存\n" +
-            "で保存してください。"
-        );
-
-    }
-
-};
-
-
-
-/*
  * 写真を閉じる
  */
 
@@ -520,7 +431,7 @@ function closePhoto() {
 
 
 /*
- * 黒い部分をクリックして閉じる
+ * 黒い部分をタップして閉じる
  */
 
 modal.onclick = function(event) {
