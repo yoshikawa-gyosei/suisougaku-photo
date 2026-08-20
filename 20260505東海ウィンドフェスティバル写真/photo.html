@@ -21,6 +21,7 @@ h1 {
     color: #333;
 }
 
+
 /* 確認結果 */
 
 #checkResult {
@@ -61,7 +62,7 @@ h1 {
 }
 
 
-/* 大きく表示 */
+/* 大きく表示する画面 */
 
 .modal {
     display: none;
@@ -78,12 +79,26 @@ h1 {
 
     justify-content: center;
     align-items: center;
+
+    flex-direction: column;
+
+    z-index: 1000;
 }
+
+
+/* 大きな写真 */
 
 .modal img {
     max-width: 95%;
-    max-height: 90%;
+    max-height: 80%;
+
+    object-fit: contain;
+
+    border-radius: 5px;
 }
+
+
+/* 閉じるボタン */
 
 .close {
     position: absolute;
@@ -99,12 +114,52 @@ h1 {
 }
 
 
+/* 保存ボタン */
+
+.saveButton {
+
+    margin-top: 20px;
+
+    padding: 12px 25px;
+
+    background: white;
+
+    color: #333;
+
+    text-decoration: none;
+
+    border-radius: 8px;
+
+    font-size: 18px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    display: inline-block;
+}
+
+.saveButton:hover {
+    background: #eeeeee;
+}
+
+
 /* スマホ */
 
 @media (max-width: 600px) {
 
     .photos {
         grid-template-columns: repeat(2, 1fr);
+    }
+
+    .modal img {
+        max-width: 95%;
+        max-height: 70%;
+    }
+
+    .saveButton {
+        font-size: 16px;
+        padding: 12px 20px;
     }
 
 }
@@ -115,6 +170,7 @@ h1 {
 
 
 <body>
+
 
 <h1>🎺 東海ウィンドフェスティバル 写真</h1>
 
@@ -131,46 +187,82 @@ h1 {
 <div class="photos" id="photos"></div>
 
 
-<!-- 大きく表示 -->
+<!-- 大きく表示する画面 -->
 
 <div class="modal" id="modal">
 
+    <!-- 閉じる -->
+
     <span class="close" onclick="closePhoto()">×</span>
 
+
+    <!-- 大きな写真 -->
+
     <img id="largePhoto">
+
+
+    <!-- 保存ボタン -->
+
+    <a
+        id="saveButton"
+        class="saveButton"
+        href="#"
+        target="_blank"
+        download
+    >
+        📥 写真を保存
+    </a>
 
 </div>
 
 
 <script>
 
+
 const photos = document.getElementById("photos");
 
 const checkResult = document.getElementById("checkResult");
 
+const modal = document.getElementById("modal");
+
+const largePhoto = document.getElementById("largePhoto");
+
+const saveButton = document.getElementById("saveButton");
+
 
 // 写真の枚数
+
 const totalPhotos = 333;
 
 
 // CloudinaryのCloud Name
+
 const cloudName = "avfwub8z";
 
 
 // 入っていない写真
+
 const missingPhotos = [];
 
 
-// 確認が終わった枚数
+// 確認した枚数
+
 let checkedPhotos = 0;
 
 
-// 写真を作る
+
+/*
+ * 写真を作る
+ */
+
 for (let i = 1; i <= totalPhotos; i++) {
+
 
     const number = String(i).padStart(3, "0");
 
+
     const img = document.createElement("img");
+
 
     const imageUrl =
         "https://res.cloudinary.com/" +
@@ -182,11 +274,9 @@ for (let i = 1; i <= totalPhotos; i++) {
 
     img.src = imageUrl;
 
-    img.loading = "lazy";
-
 
     /*
-     * 写真が正常に読み込めた場合
+     * 写真を読み込む
      */
 
     img.onload = function() {
@@ -199,7 +289,7 @@ for (let i = 1; i <= totalPhotos; i++) {
 
 
     /*
-     * 写真がCloudinaryにない場合
+     * 写真がない場合
      */
 
     img.onerror = function() {
@@ -208,7 +298,6 @@ for (let i = 1; i <= totalPhotos; i++) {
 
         checkedPhotos++;
 
-        // 写真は表示しない
         this.style.display = "none";
 
         checkComplete();
@@ -217,14 +306,16 @@ for (let i = 1; i <= totalPhotos; i++) {
 
 
     /*
-     * 写真をクリックした場合
+     * 写真をクリック
      */
 
     img.onclick = function() {
 
-        document.getElementById("largePhoto").src = this.src;
+        largePhoto.src = this.src;
 
-        document.getElementById("modal").style.display = "flex";
+        saveButton.href = this.src;
+
+        modal.style.display = "flex";
 
     };
 
@@ -234,28 +325,36 @@ for (let i = 1; i <= totalPhotos; i++) {
 }
 
 
+
 /*
- * 333枚の確認が終わったら結果を表示
+ * 確認完了
  */
 
 function checkComplete() {
 
+
     if (checkedPhotos === totalPhotos) {
+
 
         if (missingPhotos.length === 0) {
 
+
             checkResult.textContent =
-                "✅ 333枚すべての写真がCloudinaryにあります。";
+                "✅ 333枚すべての写真があります。";
+
 
             checkResult.style.background = "#d9f7df";
 
             checkResult.style.color = "#187a2f";
 
+
         } else {
 
+
             checkResult.textContent =
-                "⚠️ Cloudinaryにない写真：" +
+                "⚠️ 入っていない写真：" +
                 missingPhotos.join("、");
+
 
             checkResult.style.background = "#ffe0e0";
 
@@ -268,15 +367,33 @@ function checkComplete() {
 }
 
 
+
 /*
- * 大きく表示を閉じる
+ * 写真を閉じる
  */
 
 function closePhoto() {
 
-    document.getElementById("modal").style.display = "none";
+    modal.style.display = "none";
 
 }
+
+
+
+/*
+ * 黒い部分をクリックして閉じる
+ */
+
+modal.onclick = function(event) {
+
+    if (event.target === modal) {
+
+        closePhoto();
+
+    }
+
+};
+
 
 </script>
 
