@@ -32,6 +32,7 @@ h1 {
     text-align: center;
     font-weight: bold;
     background: #eeeeee;
+    line-height: 1.8;
 }
 
 
@@ -330,7 +331,7 @@ for (let i = 1; i <= totalPhotos; i++) {
 
 
     /*
-     * 写真をタップ
+     * 写真をクリック
      */
 
     img.onclick = function() {
@@ -344,9 +345,6 @@ for (let i = 1; i <= totalPhotos; i++) {
 
         /*
          * 保存用URL
-         *
-         * Cloudinaryに
-         * ダウンロード用として指定
          */
 
         saveButton.href =
@@ -382,11 +380,36 @@ function checkComplete() {
     }
 
 
+    /*
+     * 入っていない写真を
+     * 番号順に並べる
+     */
+
+    missingPhotos.sort(function(a, b) {
+
+        return Number(a) - Number(b);
+
+    });
+
+
+    /*
+     * 入っている枚数
+     */
+
+    const existingCount =
+        totalPhotos - missingPhotos.length;
+
+
+    /*
+     * すべて入っている場合
+     */
+
     if (missingPhotos.length === 0) {
 
 
-        checkResult.textContent =
-            "✅ 333枚すべての写真があります。";
+        checkResult.innerHTML =
+            "✅ 333枚すべての写真があります。<br>" +
+            "入っている写真：333枚";
 
 
         checkResult.style.background =
@@ -400,9 +423,19 @@ function checkComplete() {
     } else {
 
 
-        checkResult.textContent =
+        /*
+         * 入っていない写真がある場合
+         */
+
+        checkResult.innerHTML =
             "⚠️ 入っていない写真：" +
-            missingPhotos.join("、");
+            missingPhotos.join("、") +
+            "<br><br>" +
+            "入っている写真：" +
+            existingCount +
+            "枚　／　入っていない写真：" +
+            missingPhotos.length +
+            "枚";
 
 
         checkResult.style.background =
@@ -431,7 +464,7 @@ function closePhoto() {
 
 
 /*
- * 黒い部分をタップして閉じる
+ * 黒い部分をクリックして閉じる
  */
 
 modal.onclick = function(event) {
