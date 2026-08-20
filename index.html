@@ -41,6 +41,216 @@ body {
 
 
 /* =========================
+   パスワード画面
+========================= */
+
+#passwordScreen {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 9999;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    padding: 20px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #172a46,
+            #243f63
+        );
+
+}
+
+
+/* パスワードカード */
+
+.password-box {
+
+    width: 100%;
+
+    max-width: 430px;
+
+    padding: 45px 35px;
+
+    background: rgba(255,255,255,0.97);
+
+    border-radius: 22px;
+
+    text-align: center;
+
+    box-shadow:
+        0 20px 60px
+        rgba(0,0,0,0.25);
+
+}
+
+
+/* 上の文字 */
+
+.password-sub {
+
+    font-size: 11px;
+
+    letter-spacing: 4px;
+
+    color: #a07a35;
+
+    font-weight: bold;
+
+    margin-bottom: 14px;
+
+}
+
+
+/* タイトル */
+
+.password-box h1 {
+
+    margin: 0;
+
+    font-size: 24px;
+
+    color: #26384f;
+
+}
+
+
+/* 説明 */
+
+.password-description {
+
+    margin:
+        15px 0 25px;
+
+    font-size: 13px;
+
+    color: #7a858f;
+
+    line-height: 1.8;
+
+}
+
+
+/* 鍵マーク */
+
+.password-icon {
+
+    font-size: 42px;
+
+    margin-bottom: 18px;
+
+}
+
+
+/* 入力欄 */
+
+#passwordInput {
+
+    width: 100%;
+
+    padding: 15px 16px;
+
+    border:
+        1px solid #d8dee5;
+
+    border-radius: 10px;
+
+    font-size: 16px;
+
+    text-align: center;
+
+    outline: none;
+
+    background: #f8fafc;
+
+    transition:
+        border 0.2s,
+        box-shadow 0.2s;
+
+}
+
+
+#passwordInput:focus {
+
+    border-color: #263f62;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(38,63,98,0.12);
+
+}
+
+
+/* 入室ボタン */
+
+.password-button {
+
+    width: 100%;
+
+    margin-top: 14px;
+
+    padding: 14px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: #263f62;
+
+    color: white;
+
+    font-size: 15px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s,
+        transform 0.2s;
+
+}
+
+
+.password-button:hover {
+
+    background: #172a46;
+
+}
+
+
+.password-button:active {
+
+    transform:
+        scale(0.98);
+
+}
+
+
+/* エラーメッセージ */
+
+#errorMessage {
+
+    min-height: 20px;
+
+    margin-top: 13px;
+
+    font-size: 12px;
+
+    color: #c0392b;
+
+}
+
+
+/* =========================
    ヘッダー
 ========================= */
 
@@ -378,6 +588,29 @@ body {
 
 @media (max-width: 600px) {
 
+    .password-box {
+
+        padding:
+            38px 24px;
+
+        border-radius: 18px;
+
+    }
+
+
+    .password-box h1 {
+
+        font-size: 21px;
+
+    }
+
+
+    .password-icon {
+
+        font-size: 38px;
+
+    }
+
 
     .header {
 
@@ -490,7 +723,6 @@ body {
 
 @media (max-width: 400px) {
 
-
     .event-card {
 
         flex-wrap: wrap;
@@ -523,6 +755,73 @@ body {
 
 
 <!-- =========================
+     パスワード画面
+========================= -->
+
+<div id="passwordScreen">
+
+
+    <div class="password-box">
+
+
+        <div class="password-icon">
+
+            🔐
+
+        </div>
+
+
+        <div class="password-sub">
+
+            TOKAI GYOSEI
+
+        </div>
+
+
+        <h1>
+
+            PHOTO GALLERY
+
+        </h1>
+
+
+        <p class="password-description">
+
+            吹奏楽部の写真をご覧いただくには<br>
+
+            パスワードを入力してください。
+
+        </p>
+
+
+        <input
+            type="password"
+            id="passwordInput"
+            placeholder="パスワード"
+            autocomplete="off"
+        >
+
+
+        <button
+            class="password-button"
+            onclick="enterGallery()"
+        >
+
+            ギャラリーを見る →
+
+        </button>
+
+
+        <div id="errorMessage"></div>
+
+
+    </div>
+
+</div>
+
+
+
+<!-- =========================
      ヘッダー
 ========================= -->
 
@@ -538,7 +837,7 @@ body {
 
     <h1>
 
-          東海大学付属大阪仰星高等学校吹奏楽部
+        東海大学付属大阪仰星高等学校吹奏楽部
 
     </h1>
 
@@ -548,6 +847,7 @@ body {
         PHOTO GALLERY<br>
 
         吹奏楽部の本番・行事の写真をご覧いただけます。
+
     </p>
 
 
@@ -579,8 +879,6 @@ body {
     <div class="event-card">
 
 
-        <!-- 代表写真 -->
-
         <div class="event-icon">
 
             <img
@@ -590,8 +888,6 @@ body {
 
         </div>
 
-
-        <!-- 行事情報 -->
 
         <div class="event-info">
 
@@ -610,8 +906,6 @@ body {
 
         </div>
 
-
-        <!-- 写真を見る -->
 
         <button
 
@@ -638,14 +932,14 @@ body {
 
     </div>
 
+
+
     <!-- =========================
          きらめきコンサート
     ========================= -->
 
     <div class="event-card">
 
-
-        <!-- 代表写真 -->
 
         <div class="event-icon">
 
@@ -657,13 +951,12 @@ body {
         </div>
 
 
-        <!-- 行事情報 -->
-
         <div class="event-info">
 
             <h3>
 
                 きらめきコンサート
+
             </h3>
 
 
@@ -675,8 +968,6 @@ body {
 
         </div>
 
-
-        <!-- 写真を見る -->
 
         <button
 
@@ -702,75 +993,6 @@ body {
 
 
     </div>
-
-
-
-
-
-    <!-- =========================
-         今後行事を追加する場合
-    ========================= -->
-
-
-    <!--
-
-    <div class="event-card">
-
-
-        <div class="event-icon">
-
-            <img
-                src="https://res.cloudinary.com/avfwub8z/image/upload/02_001.jpg"
-                alt="○○コンサート"
-            >
-
-        </div>
-
-
-        <div class="event-info">
-
-            <h3>
-
-                ○○コンサート
-
-            </h3>
-
-
-            <p>
-
-                2026.06.20　｜　○○ホール
-
-            </p>
-
-        </div>
-
-
-        <button
-
-            class="btn"
-
-            onclick="
-
-                checkPassword(
-
-                    'パスワード',
-
-                    '20260620○○コンサート写真/photo.html'
-
-                )
-
-            "
-
-        >
-
-            写真を見る →
-
-        </button>
-
-
-    </div>
-
-    -->
 
 
 </main>
@@ -804,9 +1026,82 @@ body {
 
 <script>
 
+/* =========================
+   メインページのパスワード
+========================= */
+
+/*
+   ★ここを好きなパスワードに変更してください
+*/
+
+const mainPassword = "gyosei2026";
+
+
 
 /* =========================
-   パスワード確認
+   ギャラリーに入る
+========================= */
+
+function enterGallery() {
+
+    const input =
+        document.getElementById("passwordInput").value;
+
+    const errorMessage =
+        document.getElementById("errorMessage");
+
+
+    if (input === mainPassword) {
+
+
+        document.getElementById(
+            "passwordScreen"
+        ).style.display = "none";
+
+
+    } else {
+
+
+        errorMessage.textContent =
+            "パスワードが違います。";
+
+        document.getElementById(
+            "passwordInput"
+        ).value = "";
+
+        document.getElementById(
+            "passwordInput"
+        ).focus();
+
+    }
+
+}
+
+
+
+/* =========================
+   Enterキーでも入れる
+========================= */
+
+document.getElementById(
+    "passwordInput"
+).addEventListener(
+    "keydown",
+    function(event) {
+
+        if (event.key === "Enter") {
+
+            enterGallery();
+
+        }
+
+    }
+);
+
+
+
+/* =========================
+   行事ごとのパスワード
 ========================= */
 
 function checkPassword(
@@ -817,15 +1112,12 @@ function checkPassword(
 
 ) {
 
-
     const input = prompt(
 
         "写真を見るにはパスワードを入力してください。"
 
     );
 
-
-    /* キャンセル */
 
     if (input === null) {
 
@@ -834,8 +1126,6 @@ function checkPassword(
     }
 
 
-    /* 正しいパスワード */
-
     if (input === correctPassword) {
 
 
@@ -843,12 +1133,7 @@ function checkPassword(
             folderPath;
 
 
-    }
-
-
-    /* 間違い */
-
-    else {
+    } else {
 
 
         alert(
@@ -868,3 +1153,4 @@ function checkPassword(
 </body>
 
 </html>
+
