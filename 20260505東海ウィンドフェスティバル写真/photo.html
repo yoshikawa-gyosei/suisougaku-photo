@@ -21,23 +21,6 @@ h1 {
     color: #333;
 }
 
-
-/* 確認結果 */
-
-#checkResult {
-    max-width: 1200px;
-    margin: 20px auto;
-    padding: 15px;
-    border-radius: 8px;
-    text-align: center;
-    font-weight: bold;
-    background: #eeeeee;
-    line-height: 1.8;
-}
-
-
-/* 写真一覧 */
-
 .photos {
     max-width: 1200px;
     margin: auto;
@@ -63,7 +46,7 @@ h1 {
 }
 
 
-/* 大きく表示する画面 */
+/* 大きく表示 */
 
 .modal {
     display: none;
@@ -86,20 +69,15 @@ h1 {
     z-index: 1000;
 }
 
-
-/* 大きな写真 */
-
 .modal img {
     max-width: 95%;
     max-height: 75%;
 
     object-fit: contain;
-
-    border-radius: 5px;
 }
 
 
-/* 閉じるボタン */
+/* 閉じる */
 
 .close {
     position: absolute;
@@ -127,23 +105,15 @@ h1 {
 
     color: #333;
 
-    border: none;
-
     border-radius: 10px;
 
     font-size: 18px;
 
     font-weight: bold;
 
-    cursor: pointer;
-
     text-decoration: none;
 
     display: inline-block;
-}
-
-.saveButton:hover {
-    background: #eeeeee;
 }
 
 
@@ -183,15 +153,6 @@ h1 {
 <h1>🎺 東海ウィンドフェスティバル 写真</h1>
 
 
-<!-- 333枚の確認結果 -->
-
-<div id="checkResult">
-    写真を確認しています……
-</div>
-
-
-<!-- 写真一覧 -->
-
 <div class="photos" id="photos"></div>
 
 
@@ -199,18 +160,9 @@ h1 {
 
 <div class="modal" id="modal">
 
-
-    <!-- 閉じる -->
-
     <span class="close" onclick="closePhoto()">×</span>
 
-
-    <!-- 大きな写真 -->
-
     <img id="largePhoto">
-
-
-    <!-- 保存 -->
 
     <a
         id="saveButton"
@@ -221,28 +173,19 @@ h1 {
         📥 写真を保存
     </a>
 
-
 </div>
 
 
 <script>
 
-
 const photos =
     document.getElementById("photos");
-
-
-const checkResult =
-    document.getElementById("checkResult");
-
 
 const modal =
     document.getElementById("modal");
 
-
 const largePhoto =
     document.getElementById("largePhoto");
-
 
 const saveButton =
     document.getElementById("saveButton");
@@ -253,41 +196,20 @@ const saveButton =
 const totalPhotos = 333;
 
 
-// CloudinaryのCloud Name
+// Cloudinary
 
 const cloudName = "avfwub8z";
 
 
-// 入っていない写真
-
-const missingPhotos = [];
-
-
-// 確認した枚数
-
-let checkedPhotos = 0;
-
-
-// 現在の写真番号
-
-let currentNumber = "";
-
-
-
-/*
- * 写真を作る
- */
+// 写真を作る
 
 for (let i = 1; i <= totalPhotos; i++) {
-
 
     const number =
         String(i).padStart(3, "0");
 
-
     const img =
         document.createElement("img");
-
 
     const imageUrl =
         "https://res.cloudinary.com/" +
@@ -296,36 +218,19 @@ for (let i = 1; i <= totalPhotos; i++) {
         number +
         ".jpg";
 
-
     img.src = imageUrl;
 
-
-    /*
-     * 写真が読み込めた
-     */
-
-    img.onload = function() {
-
-        checkedPhotos++;
-
-        checkComplete();
-
-    };
+    img.loading = "lazy";
 
 
     /*
-     * 写真がない
+     * 写真がない場合は
+     * 何も表示しない
      */
 
     img.onerror = function() {
 
-        missingPhotos.push(number);
-
-        checkedPhotos++;
-
         this.style.display = "none";
-
-        checkComplete();
 
     };
 
@@ -336,16 +241,7 @@ for (let i = 1; i <= totalPhotos; i++) {
 
     img.onclick = function() {
 
-
-        currentNumber = number;
-
-
         largePhoto.src = imageUrl;
-
-
-        /*
-         * 保存用URL
-         */
 
         saveButton.href =
             "https://res.cloudinary.com/" +
@@ -353,7 +249,6 @@ for (let i = 1; i <= totalPhotos; i++) {
             "/image/upload/fl_attachment/01_" +
             number +
             ".jpg";
-
 
         modal.style.display = "flex";
 
@@ -365,95 +260,7 @@ for (let i = 1; i <= totalPhotos; i++) {
 }
 
 
-
-/*
- * 333枚の確認
- */
-
-function checkComplete() {
-
-
-    if (checkedPhotos !== totalPhotos) {
-
-        return;
-
-    }
-
-
-    /*
-     * 入っていない写真を
-     * 番号順に並べる
-     */
-
-    missingPhotos.sort(function(a, b) {
-
-        return Number(a) - Number(b);
-
-    });
-
-
-    /*
-     * 入っている枚数
-     */
-
-    const existingCount =
-        totalPhotos - missingPhotos.length;
-
-
-    /*
-     * すべて入っている場合
-     */
-
-    if (missingPhotos.length === 0) {
-
-
-        checkResult.innerHTML =
-            "✅ 333枚すべての写真があります。<br>" +
-            "入っている写真：333枚";
-
-
-        checkResult.style.background =
-            "#d9f7df";
-
-
-        checkResult.style.color =
-            "#187a2f";
-
-
-    } else {
-
-
-        /*
-         * 入っていない写真がある場合
-         */
-
-        checkResult.innerHTML =
-            "⚠️ 入っていない写真：" +
-            missingPhotos.join("、") +
-            "<br><br>" +
-            "入っている写真：" +
-            existingCount +
-            "枚　／　入っていない写真：" +
-            missingPhotos.length +
-            "枚";
-
-
-        checkResult.style.background =
-            "#ffe0e0";
-
-
-        checkResult.style.color =
-            "#c00000";
-
-    }
-
-}
-
-
-
-/*
- * 写真を閉じる
- */
+/* 閉じる */
 
 function closePhoto() {
 
@@ -462,13 +269,9 @@ function closePhoto() {
 }
 
 
-
-/*
- * 黒い部分をクリックして閉じる
- */
+/* 黒い部分をクリックして閉じる */
 
 modal.onclick = function(event) {
-
 
     if (event.target === modal) {
 
@@ -477,7 +280,6 @@ modal.onclick = function(event) {
     }
 
 };
-
 
 </script>
 
