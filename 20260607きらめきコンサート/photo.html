@@ -169,6 +169,54 @@ body {
 
 
 /* =========================
+   メインに戻るボタン
+========================= */
+
+.backButton {
+
+    display: block;
+
+    width: fit-content;
+
+    margin: 35px auto 0;
+
+    padding: 13px 28px;
+
+    background: #172a46;
+
+    color: white;
+
+    border-radius: 10px;
+
+    font-size: 15px;
+
+    font-weight: bold;
+
+    text-decoration: none;
+
+    transition:
+        background 0.2s,
+        transform 0.2s;
+
+}
+
+
+.backButton:hover {
+
+    background: #243f63;
+
+}
+
+
+.backButton:active {
+
+    transform:
+        scale(0.97);
+
+}
+
+
+/* =========================
    写真を大きく表示
 ========================= */
 
@@ -332,7 +380,6 @@ body {
 
 @media (max-width: 600px) {
 
-
     .header {
 
         padding:
@@ -410,6 +457,15 @@ body {
     }
 
 
+    .backButton {
+
+        font-size: 14px;
+
+        padding:
+            12px 24px;
+
+    }
+
 }
 
 
@@ -441,7 +497,6 @@ body {
 
 <header class="header">
 
-
     <div class="header-sub">
 
         TOKAI GYOSEI
@@ -459,8 +514,8 @@ body {
     <div class="header-date">
 
         2026.06.07　｜　京都
-    </div>
 
+    </div>
 
 </header>
 
@@ -472,12 +527,22 @@ body {
 
 <main class="container">
 
-
     <div
         class="photos"
         id="photos"
     ></div>
 
+
+    <!-- メインに戻る -->
+
+    <a
+        href="index.html"
+        class="backButton"
+    >
+
+        ← メインに戻る
+
+    </a>
 
 </main>
 
@@ -525,7 +590,6 @@ body {
 
     </a>
 
-
 </div>
 
 
@@ -535,7 +599,6 @@ body {
 ========================= -->
 
 <footer class="footer">
-
 
     <div class="footer-title">
 
@@ -550,13 +613,11 @@ body {
 
     </p>
 
-
 </footer>
 
 
 
 <script>
-
 
 /* =========================
    要素
@@ -605,12 +666,10 @@ for (
 
 
     /*
-
        001
        002
        003
        ...
-
     */
 
     const number =
