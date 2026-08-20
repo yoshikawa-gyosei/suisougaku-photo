@@ -2,142 +2,427 @@
 <html lang="ja">
 
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>東海ウィンドフェスティバル 写真</title>
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>東海ウィンドフェスティバル | Photo Gallery</title>
+
 
 <style>
 
-body {
-    margin: 0;
-    padding: 20px;
-    background: #f5f7fa;
-    font-family: Arial, sans-serif;
+/* =========================
+   全体
+========================= */
+
+* {
+    box-sizing: border-box;
 }
 
-h1 {
-    text-align: center;
-    color: #333;
+body {
+
+    margin: 0;
+
+    font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        "Hiragino Kaku Gothic ProN",
+        "Yu Gothic",
+        sans-serif;
+
+    background: #f4f6f8;
+
+    color: #263238;
+
 }
+
+
+/* =========================
+   ヘッダー
+========================= */
+
+.header {
+
+    background:
+        linear-gradient(
+            135deg,
+            #172a46,
+            #243f63
+        );
+
+    color: white;
+
+    padding:
+        38px 20px
+        34px;
+
+    text-align: center;
+
+}
+
+
+.header-sub {
+
+    font-size: 11px;
+
+    letter-spacing: 4px;
+
+    opacity: 0.7;
+
+    margin-bottom: 10px;
+
+}
+
+
+.header h1 {
+
+    margin: 0;
+
+    font-size: 27px;
+
+    letter-spacing: 1px;
+
+}
+
+
+.header-date {
+
+    margin-top: 12px;
+
+    font-size: 13px;
+
+    color:
+        rgba(255,255,255,0.75);
+
+}
+
+
+/* =========================
+   メイン
+========================= */
+
+.container {
+
+    max-width: 1250px;
+
+    margin: 0 auto;
+
+    padding:
+        35px 18px
+        60px;
+
+}
+
+
+/* =========================
+   写真グリッド
+========================= */
 
 .photos {
-    max-width: 1200px;
-    margin: auto;
 
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+
+    grid-template-columns:
+        repeat(4, 1fr);
 
     gap: 10px;
+
 }
+
+
+/* 写真 */
 
 .photos img {
+
     width: 100%;
+
     aspect-ratio: 4 / 3;
+
     object-fit: cover;
 
-    border-radius: 8px;
+    border-radius: 9px;
 
     cursor: pointer;
+
+    background: #ddd;
+
+    transition:
+        transform 0.2s,
+        opacity 0.2s;
+
 }
+
+
+/* マウスを乗せたとき */
 
 .photos img:hover {
-    opacity: 0.8;
+
+    opacity: 0.9;
+
+    transform:
+        scale(1.015);
+
 }
 
 
-/* 大きく表示 */
+/* =========================
+   写真を大きく表示
+========================= */
 
 .modal {
+
     display: none;
 
     position: fixed;
 
     left: 0;
+
     top: 0;
 
     width: 100%;
+
     height: 100%;
 
-    background: rgba(0, 0, 0, 0.92);
+    background:
+        rgba(10,18,30,0.95);
 
     justify-content: center;
+
     align-items: center;
 
     flex-direction: column;
 
     z-index: 1000;
+
 }
+
+
+/* 大きな写真 */
 
 .modal img {
-    max-width: 95%;
-    max-height: 75%;
+
+    max-width: 94%;
+
+    max-height: 78%;
 
     object-fit: contain;
+
+    border-radius: 5px;
+
 }
 
 
-/* 閉じる */
+/* =========================
+   閉じるボタン
+========================= */
 
 .close {
+
     position: absolute;
 
     right: 20px;
-    top: 5px;
+
+    top: 8px;
 
     color: white;
 
     font-size: 40px;
 
+    font-weight: 300;
+
     cursor: pointer;
+
+    line-height: 1;
+
 }
 
 
-/* 保存ボタン */
+/* =========================
+   保存ボタン
+========================= */
 
 .saveButton {
 
     margin-top: 20px;
 
-    padding: 14px 28px;
+    padding:
+        13px 25px;
 
     background: white;
 
-    color: #333;
+    color: #26384f;
 
     border-radius: 10px;
 
-    font-size: 18px;
+    font-size: 16px;
 
     font-weight: bold;
 
     text-decoration: none;
 
     display: inline-block;
+
+    transition:
+        background 0.2s,
+        transform 0.2s;
+
 }
 
 
-/* スマホ */
+.saveButton:hover {
+
+    background: #eeeeee;
+
+}
+
+
+.saveButton:active {
+
+    transform:
+        scale(0.97);
+
+}
+
+
+/* =========================
+   フッター
+========================= */
+
+.footer {
+
+    background: #172a46;
+
+    color:
+        rgba(255,255,255,0.7);
+
+    text-align: center;
+
+    padding:
+        30px 20px;
+
+}
+
+
+.footer-title {
+
+    font-size: 12px;
+
+    letter-spacing: 3px;
+
+    margin-bottom: 9px;
+
+}
+
+
+.footer p {
+
+    margin: 0;
+
+    font-size: 11px;
+
+}
+
+
+/* =========================
+   スマホ
+========================= */
 
 @media (max-width: 600px) {
 
-    body {
-        padding: 10px;
+
+    .header {
+
+        padding:
+            32px 15px
+            28px;
+
     }
+
+
+    .header-sub {
+
+        font-size: 9px;
+
+        letter-spacing: 3px;
+
+    }
+
+
+    .header h1 {
+
+        font-size: 21px;
+
+    }
+
+
+    .header-date {
+
+        font-size: 12px;
+
+    }
+
+
+    .container {
+
+        padding:
+            18px 8px
+            45px;
+
+    }
+
 
     .photos {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 6px;
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+        gap: 5px;
+
     }
+
+
+    .photos img {
+
+        border-radius: 6px;
+
+    }
+
 
     .modal img {
+
         max-width: 95%;
+
         max-height: 70%;
+
     }
 
+
     .saveButton {
-        font-size: 16px;
-        padding: 13px 22px;
+
+        font-size: 15px;
+
+        padding:
+            13px 22px;
+
+    }
+
+
+}
+
+
+/* =========================
+   とても小さいスマホ
+========================= */
+
+@media (max-width: 360px) {
+
+    .photos {
+
+        gap: 4px;
+
     }
 
 }
@@ -150,19 +435,85 @@ h1 {
 <body>
 
 
-<h1>🎺 東海ウィンドフェスティバル 写真</h1>
+<!-- =========================
+     ヘッダー
+========================= -->
+
+<header class="header">
 
 
-<div class="photos" id="photos"></div>
+    <div class="header-sub">
+
+        TOHKAI UNIVERSITY GYOSAI
+
+    </div>
 
 
-<!-- 大きく表示 -->
+    <h1>
 
-<div class="modal" id="modal">
+        🎺 東海ウィンドフェスティバル
 
-    <span class="close" onclick="closePhoto()">×</span>
+    </h1>
 
-    <img id="largePhoto">
+
+    <div class="header-date">
+
+        2026.05.05　｜　フェニーチェ堺
+
+    </div>
+
+
+</header>
+
+
+
+<!-- =========================
+     写真
+========================= -->
+
+<main class="container">
+
+
+    <div
+        class="photos"
+        id="photos"
+    ></div>
+
+
+</main>
+
+
+
+<!-- =========================
+     写真拡大
+========================= -->
+
+<div
+    class="modal"
+    id="modal"
+>
+
+
+    <!-- 閉じる -->
+
+    <span
+        class="close"
+        onclick="closePhoto()"
+    >
+
+        ×
+
+    </span>
+
+
+    <!-- 大きな写真 -->
+
+    <img
+        id="largePhoto"
+    >
+
+
+    <!-- 保存 -->
 
     <a
         id="saveButton"
@@ -170,13 +521,47 @@ h1 {
         href="#"
         target="_blank"
     >
+
         📥 写真を保存
+
     </a>
+
 
 </div>
 
 
+
+<!-- =========================
+     フッター
+========================= -->
+
+<footer class="footer">
+
+
+    <div class="footer-title">
+
+        TOHKAI UNIVERSITY GYOSAI
+
+    </div>
+
+
+    <p>
+
+        Symphonic Band Photo Gallery
+
+    </p>
+
+
+</footer>
+
+
+
 <script>
+
+
+/* =========================
+   要素
+========================= */
 
 const photos =
     document.getElementById("photos");
@@ -191,68 +576,124 @@ const saveButton =
     document.getElementById("saveButton");
 
 
-// 写真の枚数
+
+/* =========================
+   写真設定
+========================= */
+
+
+/* 写真の枚数 */
 
 const totalPhotos = 333;
 
 
-// Cloudinary
+/* Cloudinary */
 
-const cloudName = "avfwub8z";
+const cloudName =
+    "avfwub8z";
 
 
-// 写真を作る
 
-for (let i = 1; i <= totalPhotos; i++) {
+/* =========================
+   写真を作る
+========================= */
+
+for (
+    let i = 1;
+    i <= totalPhotos;
+    i++
+) {
+
+
+    /*
+
+       001
+       002
+       003
+       ...
+
+    */
 
     const number =
         String(i).padStart(3, "0");
 
+
     const img =
         document.createElement("img");
 
+
     const imageUrl =
+
         "https://res.cloudinary.com/" +
+
         cloudName +
+
         "/image/upload/01_" +
+
         number +
+
         ".jpg";
 
-    img.src = imageUrl;
 
-    img.loading = "lazy";
+    img.src =
+        imageUrl;
+
+
+    img.loading =
+        "lazy";
 
 
     /*
-     * 写真がない場合は
-     * 何も表示しない
+     * 写真が存在しない場合
+     *
+     * 空白を作らず
+     * その写真を非表示
      */
 
-    img.onerror = function() {
+    img.onerror =
+        function() {
 
-        this.style.display = "none";
+            this.style.display =
+                "none";
 
-    };
+        };
 
 
     /*
      * 写真をクリック
      */
 
-    img.onclick = function() {
+    img.onclick =
+        function() {
 
-        largePhoto.src = imageUrl;
 
-        saveButton.href =
-            "https://res.cloudinary.com/" +
-            cloudName +
-            "/image/upload/fl_attachment/01_" +
-            number +
-            ".jpg";
+            /* 大きな写真 */
 
-        modal.style.display = "flex";
+            largePhoto.src =
+                imageUrl;
 
-    };
+
+            /* 保存用URL */
+
+            saveButton.href =
+
+                "https://res.cloudinary.com/" +
+
+                cloudName +
+
+                "/image/upload/fl_attachment/01_" +
+
+                number +
+
+                ".jpg";
+
+
+            /* 表示 */
+
+            modal.style.display =
+                "flex";
+
+        };
 
 
     photos.appendChild(img);
@@ -260,26 +701,38 @@ for (let i = 1; i <= totalPhotos; i++) {
 }
 
 
-/* 閉じる */
+
+/* =========================
+   閉じる
+========================= */
 
 function closePhoto() {
 
-    modal.style.display = "none";
+    modal.style.display =
+        "none";
 
 }
 
 
-/* 黒い部分をクリックして閉じる */
 
-modal.onclick = function(event) {
+/* =========================
+   黒い部分をタップして閉じる
+========================= */
 
-    if (event.target === modal) {
+modal.onclick =
+    function(event) {
 
-        closePhoto();
 
-    }
+        if (
+            event.target === modal
+        ) {
 
-};
+            closePhoto();
+
+        }
+
+    };
+
 
 </script>
 
