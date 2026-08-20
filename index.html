@@ -3,221 +3,505 @@
 
 <head>
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
 
-    <title>東海大仰星吹奏楽部写真</title>
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
 
-    <style>
+<title>東海大仰星吹奏楽部 PHOTO GALLERY</title>
 
-        * {
-            box-sizing: border-box;
-        }
 
-        body {
+<style>
 
-            font-family:
-                -apple-system,
-                BlinkMacSystemFont,
-                "Segoe UI",
-                "Hiragino Kaku Gothic ProN",
-                "Yu Gothic",
-                sans-serif;
+/* =========================
+   全体
+========================= */
 
-            margin: 0;
-            padding: 20px 15px;
+* {
+    box-sizing: border-box;
+}
 
-            background: #f5f7fa;
-            color: #333;
-        }
+body {
 
+    margin: 0;
 
-        .page {
+    font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        "Hiragino Kaku Gothic ProN",
+        "Yu Gothic",
+        sans-serif;
 
-            max-width: 800px;
-            margin: 0 auto;
+    background: #f4f6f8;
 
-        }
+    color: #263238;
+}
 
 
-        h1 {
+/* =========================
+   ヘッダー
+========================= */
 
-            text-align: center;
+.header {
 
-            color: #2c3e50;
+    background:
+        linear-gradient(
+            135deg,
+            #172a46,
+            #243f63
+        );
 
-            margin: 10px 0 10px;
+    color: white;
 
-            font-size: 28px;
+    padding:
+        55px 20px
+        45px;
 
-        }
+    text-align: center;
 
+}
 
-        .description {
 
-            text-align: center;
+.header-sub {
 
-            color: #666;
+    font-size: 13px;
 
-            margin-bottom: 30px;
+    letter-spacing: 4px;
 
-            line-height: 1.7;
+    opacity: 0.75;
 
-        }
+    margin-bottom: 12px;
 
+}
 
-        .event-card {
 
-            background: white;
+.header h1 {
 
-            padding: 20px;
+    margin: 0;
 
-            margin-bottom: 16px;
+    font-size: 30px;
 
-            border-radius: 14px;
+    letter-spacing: 1px;
 
-            box-shadow:
-                0 3px 10px rgba(0, 0, 0, 0.08);
+}
 
-            display: flex;
 
-            align-items: center;
+.header-description {
 
-            justify-content: space-between;
+    margin:
+        16px auto
+        0;
 
-            gap: 15px;
+    max-width: 500px;
 
-        }
+    line-height: 1.8;
 
+    font-size: 14px;
 
-        .event-info {
+    color: rgba(255,255,255,0.82);
 
-            flex: 1;
+}
 
-        }
 
+/* =========================
+   メイン
+========================= */
 
-        .event-info h2 {
+.container {
 
-            margin: 0 0 7px;
+    max-width: 850px;
 
-            font-size: 18px;
+    margin:
+        0 auto;
 
-            color: #34495e;
+    padding:
+        45px 18px
+        70px;
 
-        }
+}
 
 
-        .event-info p {
+/* セクションタイトル */
 
-            margin: 0;
+.section-title {
 
-            color: #777;
+    text-align: center;
 
-            font-size: 14px;
+    margin-bottom: 30px;
 
-        }
+}
 
 
-        .btn {
+.section-title span {
 
-            display: inline-block;
+    display: block;
 
-            padding: 12px 20px;
+    font-size: 12px;
 
-            background: #e67e22;
+    letter-spacing: 3px;
 
-            color: white;
+    color: #a07a35;
 
-            text-decoration: none;
+    font-weight: bold;
 
-            border: none;
+    margin-bottom: 7px;
 
-            border-radius: 9px;
+}
 
-            font-weight: bold;
 
-            font-size: 15px;
+.section-title h2 {
 
-            cursor: pointer;
+    margin: 0;
 
-            white-space: nowrap;
+    font-size: 24px;
 
-        }
+    color: #26384f;
 
+}
 
-        .btn:hover {
 
-            background: #d35400;
+/* =========================
+   行事カード
+========================= */
 
-        }
+.event-card {
 
+    background: white;
 
-        /* スマホ */
+    border-radius: 18px;
 
-        @media (max-width: 600px) {
+    padding: 26px;
 
-            body {
+    margin-bottom: 18px;
 
-                padding: 15px 10px;
+    box-shadow:
+        0 5px 18px
+        rgba(0,0,0,0.07);
 
-            }
+    display: flex;
 
+    align-items: center;
 
-            h1 {
+    gap: 20px;
 
-                font-size: 23px;
+    transition:
+        transform 0.2s,
+        box-shadow 0.2s;
 
-            }
+}
 
 
-            .description {
+.event-card:hover {
 
-                font-size: 14px;
+    transform:
+        translateY(-3px);
 
-                margin-bottom: 20px;
+    box-shadow:
+        0 9px 25px
+        rgba(0,0,0,0.11);
 
-            }
+}
 
 
-            .event-card {
+/* 左のアイコン */
 
-                padding: 16px;
+.event-icon {
 
-                flex-direction: column;
+    width: 58px;
 
-                align-items: stretch;
+    height: 58px;
 
-            }
+    flex-shrink: 0;
 
+    border-radius: 15px;
 
-            .event-info h2 {
+    background: #eef2f7;
 
-                font-size: 17px;
+    display: flex;
 
-            }
+    align-items: center;
 
+    justify-content: center;
 
-            .event-info p {
+    font-size: 28px;
 
-                font-size: 13px;
+}
 
-            }
 
+/* 行事情報 */
 
-            .btn {
+.event-info {
 
-                width: 100%;
+    flex: 1;
 
-                text-align: center;
+}
 
-                padding: 13px;
 
-            }
+.event-info h3 {
 
-        }
+    margin:
+        0 0 7px;
 
-    </style>
+    font-size: 19px;
+
+    color: #26384f;
+
+}
+
+
+.event-info p {
+
+    margin: 0;
+
+    font-size: 14px;
+
+    color: #7a858f;
+
+    line-height: 1.6;
+
+}
+
+
+/* =========================
+   ボタン
+========================= */
+
+.btn {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 8px;
+
+    padding:
+        13px 20px;
+
+    min-width: 120px;
+
+    background: #263f62;
+
+    color: white;
+
+    text-decoration: none;
+
+    border: none;
+
+    border-radius: 10px;
+
+    font-weight: bold;
+
+    font-size: 14px;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s,
+        transform 0.2s;
+
+}
+
+
+.btn:hover {
+
+    background: #172a46;
+
+}
+
+
+.btn:active {
+
+    transform:
+        scale(0.97);
+
+}
+
+
+/* =========================
+   フッター
+========================= */
+
+.footer {
+
+    text-align: center;
+
+    padding:
+        35px 20px;
+
+    background: #172a46;
+
+    color: rgba(255,255,255,0.7);
+
+}
+
+
+.footer-title {
+
+    font-size: 13px;
+
+    letter-spacing: 3px;
+
+    margin-bottom: 10px;
+
+}
+
+
+.footer p {
+
+    margin: 0;
+
+    font-size: 12px;
+
+}
+
+
+/* =========================
+   スマホ
+========================= */
+
+@media (max-width: 600px) {
+
+
+    .header {
+
+        padding:
+            42px 18px
+            38px;
+
+    }
+
+
+    .header-sub {
+
+        font-size: 11px;
+
+        letter-spacing: 3px;
+
+    }
+
+
+    .header h1 {
+
+        font-size: 24px;
+
+    }
+
+
+    .header-description {
+
+        font-size: 13px;
+
+    }
+
+
+    .container {
+
+        padding:
+            35px 12px
+            55px;
+
+    }
+
+
+    .section-title {
+
+        margin-bottom: 22px;
+
+    }
+
+
+    .section-title h2 {
+
+        font-size: 21px;
+
+    }
+
+
+    .event-card {
+
+        padding: 20px;
+
+        border-radius: 16px;
+
+        gap: 14px;
+
+    }
+
+
+    .event-icon {
+
+        width: 48px;
+
+        height: 48px;
+
+        border-radius: 12px;
+
+        font-size: 23px;
+
+    }
+
+
+    .event-info h3 {
+
+        font-size: 16px;
+
+    }
+
+
+    .event-info p {
+
+        font-size: 12px;
+
+    }
+
+
+    .btn {
+
+        min-width: auto;
+
+        padding:
+            11px 14px;
+
+        font-size: 12px;
+
+    }
+
+
+}
+
+
+/* かなり小さいスマホ */
+
+@media (max-width: 400px) {
+
+
+    .event-card {
+
+        flex-wrap: wrap;
+
+    }
+
+
+    .event-info {
+
+        min-width:
+            calc(100% - 65px);
+
+    }
+
+
+    .btn {
+
+        width: 100%;
+
+    }
+
+}
+
+</style>
 
 </head>
 
@@ -225,43 +509,87 @@
 <body>
 
 
-<div class="page">
+<!-- =========================
+     ヘッダー
+========================= -->
+
+<header class="header">
 
 
-    <h1>🎺 東海大仰星吹奏楽部写真</h1>
+    <div class="header-sub">
+
+        TOHKAI UNIVERSITY GYOSAI
+
+    </div>
 
 
-    <p class="description">
+    <h1>
 
-        見たい行事を選択し、パスワードを入力してください。
+        🎺 東海大仰星吹奏楽部
+
+    </h1>
+
+
+    <p class="header-description">
+
+        PHOTO GALLERY<br>
+
+        吹奏楽部の活動・行事の写真をご覧いただけます。
 
     </p>
 
 
+</header>
 
-    <!-- ========================= -->
-    <!-- 東海ウィンドフェスティバル -->
-    <!-- ========================= -->
 
+
+<!-- =========================
+     メイン
+========================= -->
+
+<main class="container">
+
+
+    <div class="section-title">
+
+        <span>EVENT PHOTO</span>
+
+        <h2>行事を選択してください</h2>
+
+    </div>
+
+
+
+    <!-- =========================
+         東海ウィンドフェスティバル
+    ========================= -->
 
     <div class="event-card">
 
 
+        <div class="event-icon">
+
+            🎺
+
+        </div>
+
+
         <div class="event-info">
 
+            <h3>
 
-            <h2>🎺 東海ウィンドフェスティバル</h2>
+                東海ウィンドフェスティバル
+
+            </h3>
 
 
             <p>
 
-                2026/05/05　フェニーチェ堺
+                2026.05.05　｜　フェニーチェ堺
 
             </p>
 
-
         </div>
-
 
 
         <button
@@ -282,7 +610,7 @@
 
         >
 
-            写真を見る
+            写真を見る →
 
         </button>
 
@@ -291,9 +619,9 @@
 
 
 
-    <!-- ========================= -->
-    <!-- 行事を追加する場合 -->
-    <!-- ========================= -->
+    <!-- =========================
+         今後追加する場合
+    ========================= -->
 
 
     <!--
@@ -301,18 +629,27 @@
     <div class="event-card">
 
 
+        <div class="event-icon">
+
+            🎷
+
+        </div>
+
+
         <div class="event-info">
 
+            <h3>
 
-            <h2>🎷 ○○コンサート</h2>
+                ○○コンサート
+
+            </h3>
 
 
             <p>
 
-                2026/06/20　○○ホール
+                2026.06.20　｜　○○ホール
 
             </p>
-
 
         </div>
 
@@ -335,7 +672,7 @@
 
         >
 
-            写真を見る
+            写真を見る →
 
         </button>
 
@@ -345,58 +682,92 @@
     -->
 
 
-</div>
+</main>
+
+
+
+<!-- =========================
+     フッター
+========================= -->
+
+<footer class="footer">
+
+
+    <div class="footer-title">
+
+        TOHKAI UNIVERSITY GYOSAI
+
+    </div>
+
+
+<p>
+    Symphonic Band Photo Gallery
+</p>
+
+
+</footer>
 
 
 
 <script>
 
 
-    function checkPassword(correctPassword, folderPath) {
+/* =========================
+   パスワード確認
+========================= */
+
+function checkPassword(
+
+    correctPassword,
+
+    folderPath
+
+) {
 
 
-        const input = prompt(
+    const input = prompt(
 
-            "パスワードを入力してください："
+        "写真を見るにはパスワードを入力してください。"
 
-        );
-
-
-        // キャンセル
-
-        if (input === null) {
-
-            return;
-
-        }
+    );
 
 
-        // パスワードが正しい
+    /* キャンセル */
 
-        if (input === correctPassword) {
+    if (input === null) {
 
-
-            window.location.href = folderPath;
-
-
-        }
-
-
-        // パスワードが間違っている
-
-        else {
-
-
-            alert(
-
-                "パスワードが違います。\nもう一度入力してください。"
-
-            );
-
-        }
+        return;
 
     }
 
+
+    /* 正しい */
+
+    if (input === correctPassword) {
+
+
+        window.location.href =
+            folderPath;
+
+
+    }
+
+
+    /* 間違い */
+
+    else {
+
+
+        alert(
+
+            "パスワードが違います。\n" +
+            "もう一度入力してください。"
+
+        );
+
+    }
+
+}
 
 </script>
 
