@@ -41,7 +41,7 @@ body {
 
 
 /* =========================
-   最初のパスワード画面
+   最初・行事パスワード画面
 ========================= */
 
 .password-screen {
@@ -74,7 +74,7 @@ body {
 
     width: 100%;
 
-    max-width: 420px;
+    max-width: 430px;
 
     background: white;
 
@@ -140,6 +140,8 @@ body {
 }
 
 
+/* 入力欄 */
+
 .password-input {
 
     width: 100%;
@@ -151,7 +153,7 @@ body {
 
     border-radius: 10px;
 
-    font-size: 16px;
+    font-size: 17px;
 
     text-align: center;
 
@@ -164,8 +166,14 @@ body {
 
     border-color: #263f62;
 
+    box-shadow:
+        0 0 0 3px
+        rgba(38,63,98,0.10);
+
 }
 
+
+/* ボタン */
 
 .password-button {
 
@@ -198,6 +206,40 @@ body {
 
 }
 
+
+/* キャンセル */
+
+.password-cancel {
+
+    width: 100%;
+
+    margin-top: 10px;
+
+    padding: 12px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: #eef2f7;
+
+    color: #536273;
+
+    font-size: 14px;
+
+    cursor: pointer;
+
+}
+
+
+.password-cancel:hover {
+
+    background: #e2e7ed;
+
+}
+
+
+/* エラー */
 
 .password-error {
 
@@ -560,6 +602,7 @@ body {
 
     }
 
+
     .header-sub {
 
         font-size: 11px;
@@ -568,17 +611,20 @@ body {
 
     }
 
+
     .header h1 {
 
         font-size: 24px;
 
     }
 
+
     .header-description {
 
         font-size: 13px;
 
     }
+
 
     .container {
 
@@ -588,17 +634,20 @@ body {
 
     }
 
+
     .section-title {
 
         margin-bottom: 22px;
 
     }
 
+
     .section-title h2 {
 
         font-size: 21px;
 
     }
+
 
     .event-card {
 
@@ -610,6 +659,7 @@ body {
 
     }
 
+
     .event-icon {
 
         width: 85px;
@@ -620,17 +670,20 @@ body {
 
     }
 
+
     .event-info h3 {
 
         font-size: 16px;
 
     }
 
+
     .event-info p {
 
         font-size: 12px;
 
     }
+
 
     .btn {
 
@@ -640,6 +693,14 @@ body {
             11px 14px;
 
         font-size: 12px;
+
+    }
+
+
+    .password-box {
+
+        padding:
+            36px 22px;
 
     }
 
@@ -654,12 +715,14 @@ body {
 
     }
 
+
     .event-info {
 
         min-width:
             calc(100% - 65px);
 
     }
+
 
     .btn {
 
@@ -678,7 +741,7 @@ body {
 
 
 <!-- =========================
-     最初のパスワード画面
+     パスワード画面
 ========================= -->
 
 <div
@@ -686,14 +749,13 @@ body {
     id="passwordScreen"
 >
 
-
     <div class="password-box">
 
-
-        <div class="password-logo">
-
+        <div
+            class="password-logo"
+            id="passwordLogo"
+        >
             🎺
-
         </div>
 
 
@@ -704,14 +766,17 @@ body {
         </div>
 
 
-        <h1>
+        <h1 id="passwordTitle">
 
             PHOTO GALLERY
 
         </h1>
 
 
-        <p class="password-description">
+        <p
+            class="password-description"
+            id="passwordDescription"
+        >
 
             写真ギャラリーをご覧いただくには<br>
             パスワードを入力してください。
@@ -719,11 +784,18 @@ body {
         </p>
 
 
+        <!--
+            type="text"
+            にしているので
+            東海・京都駅なども
+            ●●●にならず見える
+        -->
+
         <input
 
             type="text"
 
-            id="mainPassword"
+            id="passwordInput"
 
             class="password-input"
 
@@ -738,11 +810,32 @@ body {
 
             class="password-button"
 
-            onclick="checkMainPassword()"
+            onclick="checkPassword()"
 
         >
 
-            ギャラリーを見る →
+            <span id="passwordButtonText">
+
+                ギャラリーを見る →
+
+            </span>
+
+        </button>
+
+
+        <button
+
+            class="password-cancel"
+
+            id="passwordCancel"
+
+            onclick="cancelEventPassword()"
+
+            style="display:none;"
+
+        >
+
+            ← 行事選択に戻る
 
         </button>
 
@@ -755,7 +848,6 @@ body {
 
         ></div>
 
-
     </div>
 
 </div>
@@ -767,7 +859,6 @@ body {
 ========================= -->
 
 <header class="header">
-
 
     <div class="header-sub">
 
@@ -790,7 +881,6 @@ body {
         吹奏楽部の本番・行事の写真をご覧いただけます。
 
     </p>
-
 
 </header>
 
@@ -854,7 +944,9 @@ body {
 
             onclick="
 
-                checkEventPassword(
+                openEventPassword(
+
+                    '東海ウィンドフェスティバル',
 
                     '東海',
 
@@ -916,7 +1008,9 @@ body {
 
             onclick="
 
-                checkEventPassword(
+                openEventPassword(
+
+                    'きらめきコンサート',
 
                     '京都駅',
 
@@ -936,67 +1030,6 @@ body {
     </div>
 
 
-
-    <!-- =========================
-         新しい行事を追加するとき
-    ========================= -->
-
-    <!--
-
-    <div class="event-card">
-
-        <div class="event-icon">
-
-            <img
-                src="Cloudinaryの画像URL"
-                alt="行事名"
-            >
-
-        </div>
-
-        <div class="event-info">
-
-            <h3>
-
-                行事名
-
-            </h3>
-
-            <p>
-
-                日付　｜　会場
-
-            </p>
-
-        </div>
-
-        <button
-
-            class="btn"
-
-            onclick="
-
-                checkEventPassword(
-
-                    '行事のパスワード',
-
-                    'フォルダ名/photo.html'
-
-                )
-
-            "
-
-        >
-
-            写真を見る →
-
-        </button>
-
-    </div>
-
-    -->
-
-
 </main>
 
 
@@ -1006,7 +1039,6 @@ body {
 ========================= -->
 
 <footer class="footer">
-
 
     <div class="footer-title">
 
@@ -1021,7 +1053,6 @@ body {
 
     </p>
 
-
 </footer>
 
 
@@ -1030,21 +1061,13 @@ body {
 
 
 /* =========================
-   すでに認証済みなら
-   パスワード画面を表示しない
+   現在のパスワード種類
 ========================= */
 
-if (
-    sessionStorage.getItem("galleryAuth")
-    === "ok"
-) {
+let passwordMode = "main";
 
-    document.getElementById(
-        "passwordScreen"
-    ).style.display = "none";
 
-}
-
+let selectedFolder = "";
 
 
 /* =========================
@@ -1053,10 +1076,9 @@ if (
 
 function checkMainPassword() {
 
-
     const input =
         document.getElementById(
-            "mainPassword"
+            "passwordInput"
         ).value;
 
 
@@ -1066,18 +1088,15 @@ function checkMainPassword() {
         );
 
 
-    if (input === "gyosei2026") {
-
-
-        /* 認証済みとして保存 */
+    if (
+        input === "gyosei2026"
+    ) {
 
         sessionStorage.setItem(
             "galleryAuth",
-            "ok"
+            "true"
         );
 
-
-        /* パスワード画面を消す */
 
         document.getElementById(
             "passwordScreen"
@@ -1087,14 +1106,16 @@ function checkMainPassword() {
         error.textContent = "";
 
 
+        document.getElementById(
+            "passwordInput"
+        ).value = "";
+
     }
 
     else {
 
-
         error.textContent =
             "パスワードが違います。";
-
 
     }
 
@@ -1103,11 +1124,180 @@ function checkMainPassword() {
 
 
 /* =========================
-   Enterキーでも入力
+   行事パスワード画面を開く
+========================= */
+
+function openEventPassword(
+
+    eventName,
+
+    correctPassword,
+
+    folderPath
+
+) {
+
+    passwordMode = "event";
+
+    selectedFolder = folderPath;
+
+    window.correctEventPassword =
+        correctPassword;
+
+
+    document.getElementById(
+        "passwordLogo"
+    ).textContent = "📷";
+
+
+    document.getElementById(
+        "passwordTitle"
+    ).textContent =
+        eventName;
+
+
+    document.getElementById(
+        "passwordDescription"
+    ).innerHTML =
+        "この行事の写真をご覧いただくには<br>" +
+        "パスワードを入力してください。";
+
+
+    document.getElementById(
+        "passwordButtonText"
+    ).textContent =
+        "写真を見る →";
+
+
+    document.getElementById(
+        "passwordCancel"
+    ).style.display =
+        "block";
+
+
+    document.getElementById(
+        "passwordInput"
+    ).value = "";
+
+
+    document.getElementById(
+        "passwordError"
+    ).textContent = "";
+
+
+    document.getElementById(
+        "passwordScreen"
+    ).style.display =
+        "flex";
+
+
+    setTimeout(
+        function() {
+
+            document.getElementById(
+                "passwordInput"
+            ).focus();
+
+        },
+        100
+    );
+
+}
+
+
+
+/* =========================
+   パスワード確認
+========================= */
+
+function checkPassword() {
+
+    const input =
+        document.getElementById(
+            "passwordInput"
+        ).value;
+
+
+    const error =
+        document.getElementById(
+            "passwordError"
+        );
+
+
+    /* メイン */
+
+    if (
+        passwordMode === "main"
+    ) {
+
+        checkMainPassword();
+
+        return;
+
+    }
+
+
+    /* 行事 */
+
+    if (
+        input ===
+        window.correctEventPassword
+    ) {
+
+        window.location.href =
+            selectedFolder;
+
+    }
+
+    else {
+
+        error.textContent =
+            "パスワードが違います。";
+
+    }
+
+}
+
+
+
+/* =========================
+   行事パスワードをキャンセル
+========================= */
+
+function cancelEventPassword() {
+
+    passwordMode = "main";
+
+    selectedFolder = "";
+
+    window.correctEventPassword = "";
+
+
+    document.getElementById(
+        "passwordInput"
+    ).value = "";
+
+
+    document.getElementById(
+        "passwordError"
+    ).textContent = "";
+
+
+    document.getElementById(
+        "passwordScreen"
+    ).style.display =
+        "none";
+
+}
+
+
+
+/* =========================
+   Enterキー
 ========================= */
 
 document
-    .getElementById("mainPassword")
+    .getElementById("passwordInput")
     .addEventListener(
         "keydown",
         function(event) {
@@ -1116,7 +1306,7 @@ document
                 event.key === "Enter"
             ) {
 
-                checkMainPassword();
+                checkPassword();
 
             }
 
@@ -1126,56 +1316,19 @@ document
 
 
 /* =========================
-   行事パスワード
+   メインの認証状態
 ========================= */
 
-function checkEventPassword(
-
-    correctPassword,
-
-    folderPath
-
+if (
+    sessionStorage.getItem(
+        "galleryAuth"
+    ) === "true"
 ) {
 
-
-    /*
-       行事パスワードは
-       普通の入力画面で表示
-    */
-
-    const input =
-        prompt(
-            "写真を見るには\nパスワードを入力してください。"
-        );
-
-
-    if (input === null) {
-
-        return;
-
-    }
-
-
-    if (
-        input === correctPassword
-    ) {
-
-
-        window.location.href =
-            folderPath;
-
-
-    }
-
-    else {
-
-
-        alert(
-            "パスワードが違います。\nもう一度入力してください。"
-        );
-
-
-    }
+    document.getElementById(
+        "passwordScreen"
+    ).style.display =
+        "none";
 
 }
 
