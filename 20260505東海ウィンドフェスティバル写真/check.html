@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>写真チェック</title>
+
+<style>
+
+body {
+
+    margin: 0;
+
+    padding: 20px;
+
+    background: #f5f7fa;
+
+    font-family: Arial, sans-serif;
+
+}
+
+h1 {
+
+    text-align: center;
+
+}
+
+#result {
+
+    max-width: 800px;
+
+    margin: 30px auto;
+
+    padding: 20px;
+
+    background: white;
+
+    border-radius: 10px;
+
+    line-height: 2;
+
+    text-align: center;
+
+}
+
+.missing {
+
+    color: #c00000;
+
+    font-weight: bold;
+
+    font-size: 20px;
+
+}
+
+.ok {
+
+    color: #187a2f;
+
+    font-weight: bold;
+
+    font-size: 20px;
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<h1>📷 写真チェック</h1>
+
+
+<div id="result">
+
+    確認しています……
+
+</div>
+
+
+<script>
+
+
+const totalPhotos = 333;
+
+const cloudName = "avfwub8z";
+
+const missingPhotos = [];
+
+let checkedPhotos = 0;
+
+
+
+/*
+
+ * 333枚を確認
+
+ */
+
+for (let i = 1; i <= totalPhotos; i++) {
+
+
+    const number =
+        String(i).padStart(3, "0");
+
+
+    const img =
+        new Image();
+
+
+    const imageUrl =
+        "https://res.cloudinary.com/" +
+        cloudName +
+        "/image/upload/01_" +
+        number +
+        ".jpg";
+
+
+    img.onload = function() {
+
+        checkedPhotos++;
+
+        checkComplete();
+
+    };
+
+
+    img.onerror = function() {
+
+        missingPhotos.push(number);
+
+        checkedPhotos++;
+
+        checkComplete();
+
+    };
+
+
+    img.src = imageUrl;
+
+}
+
+
+
+/*
+
+ * 確認完了
+
+ */
+
+function checkComplete() {
+
+
+    if (checkedPhotos !== totalPhotos) {
+
+        return;
+
+    }
+
+
+    /*
+     * 番号順にする
+     */
+
+    missingPhotos.sort(function(a, b) {
+
+        return Number(a) - Number(b);
+
+    });
+
+
+    const existingCount =
+        totalPhotos - missingPhotos.length;
+
+
+    const result =
+        document.getElementById("result");
+
+
+    /*
+     * 全部ある
+
+     */
+
+    if (missingPhotos.length === 0) {
+
+
+        result.innerHTML =
+
+            '<div class="ok">' +
+
+            '✅ 333枚すべて入っています！' +
+
+            '</div>' +
+
+            '<br>' +
+
+            '入っている写真：333枚';
+
+
+    }
+
+
+    /*
+     * 抜けている写真がある
+
+     */
+
+    else {
+
+
+        result.innerHTML =
+
+            '<div class="missing">' +
+
+            '⚠️ 入っていない写真' +
+
+            '</div>' +
+
+            '<br>' +
+
+            missingPhotos.join("、") +
+
+            '<br><br>' +
+
+            '入っている写真：' +
+
+            existingCount +
+
+            '枚<br>' +
+
+            '入っていない写真：' +
+
+            missingPhotos.length +
+
+            '枚';
+
+    }
+
+}
+
+
+</script>
+
+
+</body>
+
+</html>
