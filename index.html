@@ -720,26 +720,17 @@ body {
 
 
         <input
-
             type="text"
-
             id="mainPassword"
-
             class="password-input"
-
             placeholder="パスワードを入力"
-
             autocomplete="off"
-
         >
 
 
         <button
-
             class="password-button"
-
             onclick="checkMainPassword()"
-
         >
 
             ギャラリーを見る →
@@ -748,12 +739,103 @@ body {
 
 
         <div
-
             class="password-error"
-
             id="passwordError"
-
         ></div>
+
+
+    </div>
+
+</div>
+
+
+
+<!-- =========================
+     行事パスワード画面
+========================= -->
+
+<div
+    class="password-screen"
+    id="eventPasswordScreen"
+    style="display:none;"
+>
+
+
+    <div class="password-box">
+
+
+        <div class="password-logo">
+
+            📷
+
+        </div>
+
+
+        <div class="password-sub">
+
+            EVENT PHOTO
+
+        </div>
+
+
+        <h1 id="eventPasswordTitle">
+
+            写真を見る
+
+        </h1>
+
+
+        <p class="password-description">
+
+            この行事の写真を見るには<br>
+            パスワードを入力してください。
+
+        </p>
+
+
+        <!--
+        行事パスワードは
+        入力した文字がそのまま見える
+        -->
+
+        <input
+            type="text"
+            id="eventPassword"
+            class="password-input"
+            placeholder="パスワードを入力"
+            autocomplete="off"
+        >
+
+
+        <button
+            class="password-button"
+            onclick="checkEventPassword()"
+        >
+
+            写真を見る →
+
+        </button>
+
+
+        <div
+            class="password-error"
+            id="eventPasswordError"
+        ></div>
+
+
+        <button
+            class="password-button"
+            style="
+                background:#eef2f7;
+                color:#26384f;
+                margin-top:10px;
+            "
+            onclick="closeEventPassword()"
+        >
+
+            ← 戻る
+
+        </button>
 
 
     </div>
@@ -833,37 +915,24 @@ body {
         <div class="event-info">
 
             <h3>
-
                 東海ウィンドフェスティバル
-
             </h3>
 
 
             <p>
-
                 2026.05.05　｜　フェニーチェ堺
-
             </p>
 
         </div>
 
 
         <button
-
             class="btn"
-
-            onclick="
-
-                checkEventPassword(
-
-                    '東海',
-
-                    '20260505東海ウィンドフェスティバル写真/photo.html'
-
-                )
-
-            "
-
+            onclick="openEventPassword(
+                '東海ウィンドフェスティバル',
+                '東海',
+                '20260505東海ウィンドフェスティバル写真/photo.html'
+            )"
         >
 
             写真を見る →
@@ -895,37 +964,24 @@ body {
         <div class="event-info">
 
             <h3>
-
                 きらめきコンサート
-
             </h3>
 
 
             <p>
-
                 2026.06.07　｜　京都駅
-
             </p>
 
         </div>
 
 
         <button
-
             class="btn"
-
-            onclick="
-
-                checkEventPassword(
-
-                    '京都駅',
-
-                    '20260607きらめきコンサート/photo.html'
-
-                )
-
-            "
-
+            onclick="openEventPassword(
+                'きらめきコンサート',
+                '京都駅',
+                '20260607きらめきコンサート/photo.html'
+            )"
         >
 
             写真を見る →
@@ -934,67 +990,6 @@ body {
 
 
     </div>
-
-
-
-    <!-- =========================
-         新しい行事を追加するとき
-    ========================= -->
-
-    <!--
-
-    <div class="event-card">
-
-        <div class="event-icon">
-
-            <img
-                src="Cloudinaryの画像URL"
-                alt="行事名"
-            >
-
-        </div>
-
-        <div class="event-info">
-
-            <h3>
-
-                行事名
-
-            </h3>
-
-            <p>
-
-                日付　｜　会場
-
-            </p>
-
-        </div>
-
-        <button
-
-            class="btn"
-
-            onclick="
-
-                checkEventPassword(
-
-                    '行事のパスワード',
-
-                    'フォルダ名/photo.html'
-
-                )
-
-            "
-
-        >
-
-            写真を見る →
-
-        </button>
-
-    </div>
-
-    -->
 
 
 </main>
@@ -1007,20 +1002,13 @@ body {
 
 <footer class="footer">
 
-
     <div class="footer-title">
-
         TOKAI GYOSEI
-
     </div>
 
-
     <p>
-
         Symphonic Band Photo Gallery
-
     </p>
-
 
 </footer>
 
@@ -1028,19 +1016,16 @@ body {
 
 <script>
 
-
 /* =========================
-   最初のパスワード
+   メインパスワード
 ========================= */
 
 function checkMainPassword() {
-
 
     const input =
         document.getElementById(
             "mainPassword"
         ).value;
-
 
     const error =
         document.getElementById(
@@ -1050,19 +1035,15 @@ function checkMainPassword() {
 
     if (input === "gyosei2026") {
 
-
         document.getElementById(
             "passwordScreen"
         ).style.display = "none";
 
-
         error.textContent = "";
-
 
     }
 
     else {
-
 
         error.textContent =
             "パスワードが違います。";
@@ -1072,9 +1053,8 @@ function checkMainPassword() {
 }
 
 
-
 /* =========================
-   Enterキーでも入力
+   メインパスワード Enter
 ========================= */
 
 document
@@ -1083,9 +1063,7 @@ document
         "keydown",
         function(event) {
 
-            if (
-                event.key === "Enter"
-            ) {
+            if (event.key === "Enter") {
 
                 checkMainPassword();
 
@@ -1095,60 +1073,121 @@ document
     );
 
 
-
 /* =========================
-   行事パスワード
+   行事パスワード画面を開く
 ========================= */
 
-function checkEventPassword(
+let selectedPassword = "";
 
-    correctPassword,
+let selectedFolder = "";
 
-    folderPath
 
+function openEventPassword(
+    eventName,
+    password,
+    folder
 ) {
 
+    selectedPassword = password;
 
-    /*
-       promptを使わず
-       普通の入力欄として表示
-    */
+    selectedFolder = folder;
+
+
+    document.getElementById(
+        "eventPasswordTitle"
+    ).textContent = eventName;
+
+
+    document.getElementById(
+        "eventPassword"
+    ).value = "";
+
+
+    document.getElementById(
+        "eventPasswordError"
+    ).textContent = "";
+
+
+    document.getElementById(
+        "eventPasswordScreen"
+    ).style.display = "flex";
+
+
+    setTimeout(function() {
+
+        document.getElementById(
+            "eventPassword"
+        ).focus();
+
+    }, 100);
+
+}
+
+
+/* =========================
+   行事パスワード確認
+========================= */
+
+function checkEventPassword() {
 
     const input =
-        prompt(
-            "写真を見るには\nパスワードを入力してください。"
+        document.getElementById(
+            "eventPassword"
+        ).value;
+
+
+    const error =
+        document.getElementById(
+            "eventPasswordError"
         );
 
 
-    if (input === null) {
-
-        return;
-
-    }
-
-
-    if (
-        input === correctPassword
-    ) {
-
-
-        /*
-           行事ページへ移動
-        */
+    if (input === selectedPassword) {
 
         window.location.href =
-            folderPath;
+            selectedFolder;
 
     }
 
     else {
 
-
-        alert(
-            "パスワードが違います。\nもう一度入力してください。"
-        );
+        error.textContent =
+            "パスワードが違います。";
 
     }
+
+}
+
+
+/* =========================
+   行事パスワード Enter
+========================= */
+
+document
+    .getElementById("eventPassword")
+    .addEventListener(
+        "keydown",
+        function(event) {
+
+            if (event.key === "Enter") {
+
+                checkEventPassword();
+
+            }
+
+        }
+    );
+
+
+/* =========================
+   行事パスワードを閉じる
+========================= */
+
+function closeEventPassword() {
+
+    document.getElementById(
+        "eventPasswordScreen"
+    ).style.display = "none";
 
 }
 
