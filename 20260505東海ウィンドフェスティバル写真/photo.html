@@ -872,10 +872,9 @@ body {
    ★
    ★   行事ごとに変更する場所
    ★
-   ★   基本的にここだけ変更すればOK
+   ★   今後、行事を増やすときは基本ここだけ変更
    ★
-   ★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★
-========================================================= */
+   ★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★ */
 
 
 /* 行事名 */
@@ -905,9 +904,10 @@ const EVENT_PLACE =
    01_002.jpg
    01_003.jpg
 
-   なら、
+   の場合
 
    "01_"
+
 */
 
 const PHOTO_PREFIX =
@@ -917,12 +917,15 @@ const PHOTO_PREFIX =
 /*
    写真を探す最大番号
 
-   実際の枚数を表示するわけではありません。
+   実際の写真枚数ではありません。
 
-   333枚より増える可能性があるなら
-   500などにしておけばOK。
+   例えば実際には280枚でも、
 
-   欠番があっても問題ありません。
+   500
+
+   としてOKです。
+
+   存在しない写真は自動的に無視します。
 */
 
 const MAX_PHOTOS =
@@ -930,12 +933,9 @@ const MAX_PHOTOS =
 
 
 /*
-   最初に表示する枚数
+   一度に追加する枚数
 
-   「もっと見る」を押すたびに
-   この枚数ずつ追加されます。
-
-   60がおすすめ。
+   60枚ずつがおすすめ。
 */
 
 const PHOTOS_PER_LOAD =
@@ -957,14 +957,14 @@ const CLOUD_NAME =
 ========================================================= */
 
 
-/* ページタイトルを自動設定 */
+/* =========================================================
+   ページ情報を自動設定
+========================================================= */
 
 document.title =
     EVENT_NAME +
     " | Photo Gallery";
 
-
-/* ヘッダーを書き換え */
 
 document.querySelector(
     ".header h1"
@@ -1024,26 +1024,25 @@ const loading =
    現在の状態
 ========================================================= */
 
+
+/*
+   次に確認する写真番号
+*/
+
 let nextPhotoNumber =
     1;
 
+
+/*
+   今見ている写真の番号
+*/
 
 let currentPhotoIndex =
     -1;
 
 
 /*
-   実際に表示できた写真のURLを保存
-
-   前へ・次へで使います。
-*/
-
-const availablePhotos =
-    [];
-
-
-/*
-   写真URLを保存
+   実際に存在した写真だけ保存
 */
 
 const photoData =
@@ -1064,21 +1063,19 @@ let isLoading =
 
 
 /*
-   一覧用
-
-   小さく軽い画像を使用。
+   一覧用の軽量画像
 
    f_auto
-   → WebPなど対応形式を自動選択
+   → 対応している軽い画像形式を自動使用
 
    q_auto
    → Cloudinaryが画質と容量を自動調整
 
    w_500
-   → 一覧では幅500px程度
+   → 一覧用なので幅500px程度
 
    c_fill
-   → 一覧の4:3枠に合わせる
+   → 一覧を4:3に揃える
 */
 
 function getThumbnailUrl(
@@ -1112,7 +1109,6 @@ function getThumbnailUrl(
    クリックしたときはこちら。
 
    一覧より高画質。
-
 */
 
 function getLargeImageUrl(
@@ -1142,7 +1138,6 @@ function getLargeImageUrl(
 
 /*
    保存用
-
 */
 
 function getDownloadUrl(
@@ -1171,10 +1166,10 @@ function getDownloadUrl(
 
 
 /* =========================================================
-   写真を追加
+   1枚の写真を確認
 ========================================================= */
 
-function addPhoto(
+function checkPhoto(
     photoNumber
 ) {
 
@@ -1203,50 +1198,24 @@ function addPhoto(
                 );
 
 
+            /*
+               Imageを作って存在確認
+
+               ここが今回の高速化ポイント。
+
+               1枚ずつ待たず、
+               複数枚を同時に確認します。
+            */
+
             const img =
-                document.createElement(
-                    "img"
-                );
+                new Image();
 
-
-            img.src =
-                thumbnailUrl;
-
-
-            img.alt =
-                EVENT_NAME +
-                " 写真";
-
-
-            /*
-               lazy loading
-
-               画面に近づいたときに
-               読み込む
-            */
-
-            img.loading =
-                "lazy";
-
-
-            /*
-               写真が正常に読み込めた
-            */
 
             img.onload =
                 function() {
 
 
-                    /*
-                       実際に存在する写真だけ
-                       配列に追加
-                    */
-
-                    const index =
-                        photoData.length;
-
-
-                    photoData.push({
+                    resolve({
 
                         number:
                             number,
@@ -1260,52 +1229,25 @@ function addPhoto(
                         download:
                             getDownloadUrl(
                                 number
-                            ),
-
-                        element:
-                            img
+                            )
 
                     });
 
-
-                    /*
-                       クリック
-                    */
-
-                    img.onclick =
-                        function() {
-
-                            openPhoto(
-                                index
-                            );
-
-                        };
-
-
-                    photos.appendChild(
-                        img
-                    );
-
-
-                    resolve(
-                        true
-                    );
-
                 };
 
-
-            /*
-               写真が存在しない場合
-            */
 
             img.onerror =
                 function() {
 
                     resolve(
-                        false
+                        null
                     );
 
                 };
+
+
+            img.src =
+                thumbnailUrl;
 
         }
     );
@@ -1314,7 +1256,7 @@ function addPhoto(
 
 
 /* =========================================================
-   写真を読み込む
+   60枚をまとめて確認
 ========================================================= */
 
 async function loadMorePhotos() {
@@ -1334,7 +1276,7 @@ async function loadMorePhotos() {
 
 
     /*
-       最大番号に達した
+       最大番号まで確認した
     */
 
     if (
@@ -1362,12 +1304,8 @@ async function loadMorePhotos() {
         "block";
 
 
-    let loadedCount =
-        0;
-
-
     /*
-       今回読み込む範囲
+       今回確認する範囲
     */
 
     const start =
@@ -1384,8 +1322,21 @@ async function loadMorePhotos() {
 
 
     /*
-       60枚を順番に確認
+       ★重要★
+
+       60枚を全部同時に確認する。
+
+       前のコードのように
+
+       001 → 完了
+       002 → 完了
+       003 → 完了
+
+       と1枚ずつ待たない。
     */
+
+    const promises = [];
+
 
     for (
         let i = start;
@@ -1393,30 +1344,132 @@ async function loadMorePhotos() {
         i++
     ) {
 
-        const exists =
-            await addPhoto(
-                i
-            );
-
-
-        if (
-            exists
-        ) {
-
-            loadedCount++;
-
-        }
+        promises.push(
+            checkPhoto(i)
+        );
 
     }
 
 
     /*
-       次の番号
+       全部の確認が終わるのを待つ
+    */
+
+    const results =
+        await Promise.all(
+            promises
+        );
+
+
+    /*
+       実際に存在した写真だけ取り出す
+
+       nullは存在しなかった写真
+    */
+
+    const validPhotos =
+        results.filter(
+            function(photo) {
+
+                return photo !== null;
+
+            }
+        );
+
+
+    /*
+       順番通りに追加
+    */
+
+    for (
+        const photo
+        of validPhotos
+    ) {
+
+
+        const img =
+            document.createElement(
+                "img"
+            );
+
+
+        /*
+           一覧用URL
+        */
+
+        img.src =
+            photo.thumbnail;
+
+
+        img.alt =
+            EVENT_NAME +
+            " 写真";
+
+
+        /*
+           lazy loading
+
+           画面に近づいた写真だけ
+           ブラウザが表示する
+        */
+
+        img.loading =
+            "lazy";
+
+
+        /*
+           現在の配列番号
+        */
+
+        const index =
+            photoData.length;
+
+
+        /*
+           データを保存
+        */
+
+        photoData.push(
+            photo
+        );
+
+
+        /*
+           クリックしたら拡大
+        */
+
+        img.onclick =
+            function() {
+
+                openPhoto(
+                    index
+                );
+
+            };
+
+
+        /*
+           写真を画面に追加
+        */
+
+        photos.appendChild(
+            img
+        );
+
+    }
+
+
+    /*
+       次の番号へ
     */
 
     nextPhotoNumber =
         end + 1;
 
+
+    /*
+       読み込み終了
+    */
 
     loading.style.display =
         "none";
@@ -1431,15 +1484,25 @@ async function loadMorePhotos() {
 
 
     /*
-       今回の範囲に
-       写真が1枚もなかった場合
-       
+       今回の範囲で写真が1枚もなければ
        もう続きがないと判断
     */
 
     if (
-        loadedCount === 0
-        ||
+        validPhotos.length === 0
+    ) {
+
+        moreButton.style.display =
+            "none";
+
+    }
+
+
+    /*
+       最大番号まで到達
+    */
+
+    if (
         nextPhotoNumber >
         MAX_PHOTOS
     ) {
@@ -1531,10 +1594,6 @@ function showPreviousPhoto(
 ) {
 
 
-    /*
-       背景クリック扱いを防ぐ
-    */
-
     if (
         event
     ) {
@@ -1569,10 +1628,6 @@ function showNextPhoto(
 ) {
 
 
-    /*
-       背景クリック扱いを防ぐ
-    */
-
     if (
         event
     ) {
@@ -1581,6 +1636,11 @@ function showNextPhoto(
 
     }
 
+
+    /*
+       今読み込まれている写真の
+       最後まで来た場合
+    */
 
     if (
         currentPhotoIndex >=
@@ -1600,7 +1660,7 @@ function showNextPhoto(
 
 
 /* =========================================================
-   前後ボタンの表示
+   前後ボタンの状態
 ========================================================= */
 
 function updateNavigation() {
@@ -1619,7 +1679,7 @@ function updateNavigation() {
 
 
     /*
-       最初の写真なら前へを薄くする
+       最初の写真
     */
 
     if (
@@ -1640,8 +1700,7 @@ function updateNavigation() {
 
 
     /*
-       最後まで読み込まれた写真なら
-       次へを薄くする
+       最後の写真
     */
 
     if (
@@ -1738,7 +1797,7 @@ modal.onclick =
 
 
 /* =========================================================
-   PCのキーボード操作
+   PCキーボード操作
 ========================================================= */
 
 document.addEventListener(
@@ -1747,7 +1806,7 @@ document.addEventListener(
 
 
         /*
-           写真を開いていない場合
+           写真を開いていなければ何もしない
         */
 
         if (
@@ -1761,7 +1820,7 @@ document.addEventListener(
 
 
         /*
-           ←
+           左矢印
         */
 
         if (
@@ -1775,7 +1834,7 @@ document.addEventListener(
 
 
         /*
-           →
+           右矢印
         */
 
         if (
@@ -1806,7 +1865,7 @@ document.addEventListener(
 
 
 /* =========================================================
-   スマホのスワイプ
+   スマホ左右スワイプ
 ========================================================= */
 
 let touchStartX =
@@ -1877,7 +1936,7 @@ modal.addEventListener(
 
 
         /*
-           横方向のスワイプだけ判定
+           縦方向の操作なら無視
         */
 
         if (
@@ -1925,7 +1984,7 @@ modal.addEventListener(
 
 
 /* =========================================================
-   最初の写真を読み込む
+   最初の60枚を読み込む
 ========================================================= */
 
 loadMorePhotos();
