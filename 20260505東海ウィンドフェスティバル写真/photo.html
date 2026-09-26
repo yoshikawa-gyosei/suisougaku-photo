@@ -1,30 +1,21 @@
 <!DOCTYPE html>
+
 <html lang="ja">
 
 <head>
-
 <meta charset="UTF-8">
-
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>東海ウィンドフェスティバル | Photo Gallery</title>
 
-
 <style>
-
-/* =========================================================
-   全体
-========================================================= */
 
 * {
     box-sizing: border-box;
 }
 
 body {
-
     margin: 0;
-
     font-family:
         -apple-system,
         BlinkMacSystemFont,
@@ -32,11 +23,8 @@ body {
         "Hiragino Kaku Gothic ProN",
         "Yu Gothic",
         sans-serif;
-
     background: #f4f6f8;
-
     color: #263238;
-
 }
 
 
@@ -45,58 +33,34 @@ body {
 ========================================================= */
 
 .header {
-
     background:
         linear-gradient(
             135deg,
             #172a46,
             #243f63
         );
-
     color: white;
-
-    padding:
-        38px 20px
-        34px;
-
+    padding: 38px 20px 34px;
     text-align: center;
-
 }
-
 
 .header-sub {
-
     font-size: 11px;
-
     letter-spacing: 4px;
-
     opacity: 0.7;
-
     margin-bottom: 10px;
-
 }
-
 
 .header h1 {
-
     margin: 0;
-
     font-size: 27px;
-
     letter-spacing: 1px;
-
 }
 
-
 .header-date {
-
     margin-top: 12px;
-
     font-size: 13px;
-
-    color:
-        rgba(255,255,255,0.75);
-
+    color: rgba(255,255,255,0.75);
 }
 
 
@@ -105,15 +69,9 @@ body {
 ========================================================= */
 
 .container {
-
     max-width: 1250px;
-
     margin: 0 auto;
-
-    padding:
-        35px 18px
-        60px;
-
+    padding: 35px 18px 60px;
 }
 
 
@@ -122,14 +80,9 @@ body {
 ========================================================= */
 
 .photos {
-
     display: grid;
-
-    grid-template-columns:
-        repeat(4, 1fr);
-
+    grid-template-columns: repeat(4, 1fr);
     gap: 10px;
-
 }
 
 
@@ -138,35 +91,21 @@ body {
 ========================================================= */
 
 .photos img {
-
     width: 100%;
-
     aspect-ratio: 4 / 3;
-
     object-fit: cover;
-
     border-radius: 9px;
-
     cursor: pointer;
-
     background: #ddd;
-
     display: block;
-
     transition:
         transform 0.2s,
         opacity 0.2s;
-
 }
 
-
 .photos img:hover {
-
     opacity: 0.9;
-
-    transform:
-        scale(1.015);
-
+    transform: scale(1.015);
 }
 
 
@@ -175,18 +114,11 @@ body {
 ========================================================= */
 
 .loading {
-
     text-align: center;
-
-    margin:
-        25px 0;
-
+    margin: 25px 0;
     color: #7a858f;
-
     font-size: 13px;
-
     display: none;
-
 }
 
 
@@ -195,57 +127,32 @@ body {
 ========================================================= */
 
 .moreButton {
-
     display: block;
-
-    margin:
-        30px auto 0;
-
-    padding:
-        14px 32px;
-
+    margin: 30px auto 0;
+    padding: 14px 32px;
     background: #263f62;
-
     color: white;
-
     border: none;
-
     border-radius: 10px;
-
     font-size: 14px;
-
     font-weight: bold;
-
     cursor: pointer;
-
     transition:
         background 0.2s,
         transform 0.2s;
-
 }
-
 
 .moreButton:hover {
-
     background: #172a46;
-
 }
-
 
 .moreButton:active {
-
-    transform:
-        scale(0.97);
-
+    transform: scale(0.97);
 }
 
-
 .moreButton:disabled {
-
     opacity: 0.6;
-
     cursor: default;
-
 }
 
 
@@ -254,48 +161,27 @@ body {
 ========================================================= */
 
 .backButton {
-
     display: block;
-
     width: fit-content;
-
-    margin:
-        35px auto 0;
-
-    padding:
-        13px 28px;
-
+    margin: 35px auto 0;
+    padding: 13px 28px;
     background: #172a46;
-
     color: white;
-
     border-radius: 10px;
-
     font-size: 15px;
-
     font-weight: bold;
-
     text-decoration: none;
-
     transition:
         background 0.2s,
         transform 0.2s;
-
 }
-
 
 .backButton:hover {
-
     background: #243f63;
-
 }
 
-
 .backButton:active {
-
-    transform:
-        scale(0.97);
-
+    transform: scale(0.97);
 }
 
 
@@ -304,32 +190,18 @@ body {
 ========================================================= */
 
 .modal {
-
     display: none;
-
     position: fixed;
-
     left: 0;
-
     top: 0;
-
     width: 100%;
-
     height: 100%;
-
-    background:
-        rgba(10,18,30,0.96);
-
+    background: rgba(10,18,30,0.96);
     justify-content: center;
-
     align-items: center;
-
     flex-direction: column;
-
     z-index: 1000;
-
     touch-action: none;
-
 }
 
 
@@ -338,19 +210,12 @@ body {
 ========================================================= */
 
 .modal img {
-
     max-width: 94%;
-
     max-height: 78%;
-
     object-fit: contain;
-
     border-radius: 5px;
-
     user-select: none;
-
     -webkit-user-drag: none;
-
 }
 
 
@@ -359,25 +224,15 @@ body {
 ========================================================= */
 
 .close {
-
     position: absolute;
-
     right: 20px;
-
     top: 8px;
-
     color: white;
-
     font-size: 40px;
-
     font-weight: 300;
-
     cursor: pointer;
-
     line-height: 1;
-
     z-index: 10;
-
 }
 
 
@@ -387,74 +242,43 @@ body {
 
 .photoPrev,
 .photoNext {
-
     position: absolute;
-
     top: 50%;
-
-    transform:
-        translateY(-50%);
-
+    transform: translateY(-50%);
     width: 52px;
-
     height: 52px;
-
     border: none;
-
     border-radius: 50%;
-
-    background:
-        rgba(255,255,255,0.14);
-
+    background: rgba(255,255,255,0.14);
     color: white;
-
     font-size: 30px;
-
     cursor: pointer;
-
     display: flex;
-
     align-items: center;
-
     justify-content: center;
-
     transition:
         background 0.2s,
         transform 0.2s;
-
 }
-
 
 .photoPrev:hover,
 .photoNext:hover {
-
-    background:
-        rgba(255,255,255,0.25);
-
+    background: rgba(255,255,255,0.25);
 }
-
 
 .photoPrev:active,
 .photoNext:active {
-
     transform:
         translateY(-50%)
         scale(0.94);
-
 }
-
 
 .photoPrev {
-
     left: 18px;
-
 }
 
-
 .photoNext {
-
     right: 18px;
-
 }
 
 
@@ -463,45 +287,26 @@ body {
 ========================================================= */
 
 .saveButton {
-
     margin-top: 20px;
-
-    padding:
-        13px 25px;
-
+    padding: 13px 25px;
     background: white;
-
     color: #26384f;
-
     border-radius: 10px;
-
     font-size: 16px;
-
     font-weight: bold;
-
     text-decoration: none;
-
     display: inline-block;
-
     transition:
         background 0.2s,
         transform 0.2s;
-
 }
-
 
 .saveButton:hover {
-
     background: #eeeeee;
-
 }
 
-
 .saveButton:active {
-
-    transform:
-        scale(0.97);
-
+    transform: scale(0.97);
 }
 
 
@@ -510,37 +315,21 @@ body {
 ========================================================= */
 
 .footer {
-
     background: #172a46;
-
-    color:
-        rgba(255,255,255,0.7);
-
+    color: rgba(255,255,255,0.7);
     text-align: center;
-
-    padding:
-        30px 20px;
-
+    padding: 30px 20px;
 }
-
 
 .footer-title {
-
     font-size: 12px;
-
     letter-spacing: 3px;
-
     margin-bottom: 9px;
-
 }
 
-
 .footer p {
-
     margin: 0;
-
     font-size: 11px;
-
 }
 
 
@@ -551,120 +340,65 @@ body {
 @media (max-width: 600px) {
 
     .header {
-
-        padding:
-            32px 15px
-            28px;
-
+        padding: 32px 15px 28px;
     }
-
 
     .header-sub {
-
         font-size: 9px;
-
         letter-spacing: 3px;
-
     }
-
 
     .header h1 {
-
         font-size: 21px;
-
     }
-
 
     .header-date {
-
         font-size: 12px;
-
     }
-
 
     .container {
-
-        padding:
-            18px 8px
-            45px;
-
+        padding: 18px 8px 45px;
     }
-
 
     .photos {
-
-        grid-template-columns:
-            repeat(2, 1fr);
-
+        grid-template-columns: repeat(2, 1fr);
         gap: 5px;
-
     }
-
 
     .photos img {
-
         border-radius: 6px;
-
     }
-
 
     .modal img {
-
         max-width: 95%;
-
         max-height: 72%;
-
     }
-
 
     .photoPrev,
     .photoNext {
-
         width: 44px;
-
         height: 44px;
-
         font-size: 25px;
-
-        background:
-            rgba(255,255,255,0.10);
-
+        background: rgba(255,255,255,0.10);
     }
-
 
     .photoPrev {
-
         left: 8px;
-
     }
-
 
     .photoNext {
-
         right: 8px;
-
     }
-
 
     .saveButton {
-
         font-size: 15px;
-
-        padding:
-            13px 22px;
-
+        padding: 13px 22px;
     }
-
 
     .backButton {
-
         font-size: 14px;
-
-        padding:
-            12px 24px;
-
+        padding: 12px 24px;
     }
-
 }
 
 
@@ -675,21 +409,14 @@ body {
 @media (max-width: 360px) {
 
     .photos {
-
         gap: 4px;
-
     }
-
 
     .photoPrev,
     .photoNext {
-
         width: 40px;
-
         height: 40px;
-
         font-size: 22px;
-
     }
 
 }
@@ -698,183 +425,128 @@ body {
 
 </head>
 
-
 <body>
-
-
-<!-- =========================================================
-     ヘッダー
-========================================================= -->
 
 <header class="header">
 
-    <div class="header-sub">
-        TOKAI GYOSEI
-    </div>
+```
+<div class="header-sub">
+    TOKAI GYOSEI
+</div>
 
+<h1>
+    🎺 東海ウィンドフェスティバル
+</h1>
 
-    <h1>
-        🎺 東海ウィンドフェスティバル
-    </h1>
-
-
-    <div class="header-date">
-        2026.05.05　｜　フェニーチェ堺
-    </div>
+<div class="header-date">
+    2026.05.05　｜　フェニーチェ堺
+</div>
+```
 
 </header>
 
-
-
-<!-- =========================================================
-     メイン
-========================================================= -->
-
 <main class="container">
 
+```
+<div
+    class="photos"
+    id="photos"
+></div>
 
-    <!-- 写真 -->
+<div
+    class="loading"
+    id="loading"
+>
+    写真を読み込んでいます…
+</div>
 
-    <div
-        class="photos"
-        id="photos"
-    ></div>
+<button
+    class="moreButton"
+    id="moreButton"
+    onclick="loadMorePhotos()"
+>
+    もっと写真を見る ↓
+</button>
 
-
-    <!-- 読み込み中 -->
-
-    <div
-        class="loading"
-        id="loading"
-    >
-        写真を読み込んでいます…
-    </div>
-
-
-    <!-- もっと見る -->
-
-    <button
-        class="moreButton"
-        id="moreButton"
-        onclick="loadMorePhotos()"
-    >
-        もっと写真を見る ↓
-    </button>
-
-
-    <!-- メインに戻る -->
-
-    <a
-        href="../index.html"
-        class="backButton"
-    >
-        ← メインに戻る
-    </a>
-
+<a
+    href="../index.html"
+    class="backButton"
+>
+    ← メインに戻る
+</a>
+```
 
 </main>
-
-
-
-<!-- =========================================================
-     写真拡大
-========================================================= -->
 
 <div
     class="modal"
     id="modal"
 >
 
+```
+<span
+    class="close"
+    onclick="closePhoto()"
+>
+    ×
+</span>
 
-    <!-- 閉じる -->
+<button
+    class="photoPrev"
+    id="photoPrev"
+    onclick="showPreviousPhoto(event)"
+    aria-label="前の写真"
+>
+    ‹
+</button>
 
-    <span
-        class="close"
-        onclick="closePhoto()"
-    >
-        ×
-    </span>
+<img
+    id="largePhoto"
+    alt="拡大写真"
+>
 
+<button
+    class="photoNext"
+    id="photoNext"
+    onclick="showNextPhoto(event)"
+    aria-label="次の写真"
+>
+    ›
+</button>
 
-    <!-- 前へ -->
-
-    <button
-        class="photoPrev"
-        id="photoPrev"
-        onclick="showPreviousPhoto(event)"
-        aria-label="前の写真"
-    >
-        ‹
-    </button>
-
-
-    <!-- 大きな写真 -->
-
-    <img
-        id="largePhoto"
-        alt="拡大写真"
-    >
-
-
-    <!-- 次へ -->
-
-    <button
-        class="photoNext"
-        id="photoNext"
-        onclick="showNextPhoto(event)"
-        aria-label="次の写真"
-    >
-        ›
-    </button>
-
-
-    <!-- 保存 -->
-
-    <a
-        id="saveButton"
-        class="saveButton"
-        href="#"
-        target="_blank"
-        rel="noopener"
-    >
-        📥 写真を保存
-    </a>
-
+<a
+    id="saveButton"
+    class="saveButton"
+    href="#"
+    target="_blank"
+    rel="noopener"
+>
+    📥 写真を保存
+</a>
+```
 
 </div>
 
-
-
-<!-- =========================================================
-     フッター
-========================================================= -->
-
 <footer class="footer">
 
-    <div class="footer-title">
-        TOKAI GYOSEI
-    </div>
+```
+<div class="footer-title">
+    TOKAI GYOSEI
+</div>
 
-
-    <p>
-        Symphonic Band Photo Gallery
-    </p>
+<p>
+    Symphonic Band Photo Gallery
+</p>
+```
 
 </footer>
-
-
 
 <script>
 
 
 /* =========================================================
-   ★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★
-   ★
-   ★   行事ごとに変更する場所
-   ★
-   ★   今後、行事を増やすときは基本ここだけ変更
-   ★
-   ★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★ */
+   ★ 行事ごとに変更する場所
+========================================================= */
 
 
 /* 行事名 */
@@ -896,60 +568,23 @@ const EVENT_PLACE =
 
 
 /*
-   Cloudinaryの写真名
+   Google Apps ScriptのURL
 
-   例：
-
-   01_001.jpg
-   01_002.jpg
-   01_003.jpg
-
-   の場合
-
-   "01_"
-
+   今回作ったWebアプリのURL
 */
 
-const PHOTO_PREFIX =
-    "01_";
+const GOOGLE_SCRIPT_URL =
+    "https://script.google.com/macros/s/AKfycbyiyBzuGmTHm-UZMPW8okp9e0uu2_O2XYG7uMEvw8Ugsu0a2x2qyi1vTA9yqHwux6OA9A/exec";
 
 
 /*
-   写真を探す最大番号
+   1回に表示する写真枚数
 
-   実際の写真枚数ではありません。
-
-   例えば実際には280枚でも、
-
-   500
-
-   としてOKです。
-
-   存在しない写真は自動的に無視します。
-*/
-
-const MAX_PHOTOS =
-    500;
-
-
-/*
-   一度に追加する枚数
-
-   60枚ずつがおすすめ。
+   60枚ずつ表示
 */
 
 const PHOTOS_PER_LOAD =
     60;
-
-
-/*
-   Cloudinary
-
-   今使っているCloudinaryの名前
-*/
-
-const CLOUD_NAME =
-    "avfwub8z";
 
 
 /* =========================================================
@@ -957,9 +592,7 @@ const CLOUD_NAME =
 ========================================================= */
 
 
-/* =========================================================
-   ページ情報を自動設定
-========================================================= */
+/* ページ情報 */
 
 document.title =
     EVENT_NAME +
@@ -980,9 +613,7 @@ document.querySelector(
     EVENT_PLACE;
 
 
-/* =========================================================
-   要素
-========================================================= */
+/* 要素 */
 
 const photos =
     document.getElementById(
@@ -1020,84 +651,35 @@ const loading =
     );
 
 
+/* 現在の状態 */
+
+let allPhotos = [];
+
+let currentDisplayIndex = 0;
+
+let displayCount = 0;
+
+let isLoading = false;
+
+
 /* =========================================================
-   現在の状態
+   Google Driveの写真URL
 ========================================================= */
 
 
 /*
-   次に確認する写真番号
+   一覧用
+
+   Google Driveの画像を
+   サムネイルとして表示
 */
 
-let nextPhotoNumber =
-    1;
-
-
-/*
-   今見ている写真の番号
-*/
-
-let currentPhotoIndex =
-    -1;
-
-
-/*
-   実際に存在した写真だけ保存
-*/
-
-const photoData =
-    [];
-
-
-/*
-   読み込み中かどうか
-*/
-
-let isLoading =
-    false;
-
-
-/* =========================================================
-   Cloudinary URL
-========================================================= */
-
-
-/*
-   一覧用の軽量画像
-
-   f_auto
-   → 対応している軽い画像形式を自動使用
-
-   q_auto
-   → Cloudinaryが画質と容量を自動調整
-
-   w_500
-   → 一覧用なので幅500px程度
-
-   c_fill
-   → 一覧を4:3に揃える
-*/
-
-function getThumbnailUrl(
-    number
-) {
+function getThumbnailUrl(id) {
 
     return (
-
-        "https://res.cloudinary.com/" +
-
-        CLOUD_NAME +
-
-        "/image/upload/" +
-
-        "f_auto,q_auto,w_500,c_fill,g_auto/" +
-
-        PHOTO_PREFIX +
-
-        number +
-
-        ".jpg"
-
+        "https://drive.google.com/thumbnail?id=" +
+        encodeURIComponent(id) +
+        "&sz=w1000"
     );
 
 }
@@ -1105,32 +687,14 @@ function getThumbnailUrl(
 
 /*
    拡大用
-
-   クリックしたときはこちら。
-
-   一覧より高画質。
 */
 
-function getLargeImageUrl(
-    number
-) {
+function getLargeImageUrl(id) {
 
     return (
-
-        "https://res.cloudinary.com/" +
-
-        CLOUD_NAME +
-
-        "/image/upload/" +
-
-        "f_auto,q_auto/" +
-
-        PHOTO_PREFIX +
-
-        number +
-
-        ".jpg"
-
+        "https://drive.google.com/thumbnail?id=" +
+        encodeURIComponent(id) +
+        "&sz=w2000"
     );
 
 }
@@ -1138,133 +702,167 @@ function getLargeImageUrl(
 
 /*
    保存用
+
+   Google Driveの画像を開くURL
 */
 
-function getDownloadUrl(
-    number
-) {
+function getDownloadUrl(id) {
 
     return (
-
-        "https://res.cloudinary.com/" +
-
-        CLOUD_NAME +
-
-        "/image/upload/" +
-
-        "fl_attachment,f_auto,q_auto/" +
-
-        PHOTO_PREFIX +
-
-        number +
-
-        ".jpg"
-
+        "https://drive.google.com/uc?export=download&id=" +
+        encodeURIComponent(id)
     );
 
 }
 
 
 /* =========================================================
-   1枚の写真を確認
+   Google Driveから写真一覧を取得
 ========================================================= */
 
-function checkPhoto(
-    photoNumber
-) {
+async function getPhotosFromDrive() {
 
-    return new Promise(
-        function(resolve) {
+    try {
+
+        loading.style.display =
+            "block";
+
+        const response =
+            await fetch(
+                GOOGLE_SCRIPT_URL
+            );
+
+        if (!response.ok) {
+
+            throw new Error(
+                "写真一覧の取得に失敗しました"
+            );
+
+        }
+
+        const data =
+            await response.json();
 
 
-            const number =
-                String(
-                    photoNumber
-                ).padStart(
-                    3,
-                    "0"
+        /*
+           名前順に並べる
+
+           001
+           002
+           003
+           ...
+
+           の順番になる
+        */
+
+        data.sort(
+            function(a, b) {
+
+                return a.name.localeCompare(
+                    b.name,
+                    undefined,
+                    {
+                        numeric: true
+                    }
                 );
 
-
-            const thumbnailUrl =
-                getThumbnailUrl(
-                    number
-                );
+            }
+        );
 
 
-            const largeUrl =
-                getLargeImageUrl(
-                    number
-                );
+        /*
+           Google Driveのデータを
+           サイト用データに変換
+        */
 
+        allPhotos =
+            data.map(
+                function(photo) {
 
-            /*
-               Imageを作って存在確認
+                    return {
 
-               ここが今回の高速化ポイント。
+                        name:
+                            photo.name,
 
-               1枚ずつ待たず、
-               複数枚を同時に確認します。
-            */
-
-            const img =
-                new Image();
-
-
-            img.onload =
-                function() {
-
-
-                    resolve({
-
-                        number:
-                            number,
+                        id:
+                            photo.id,
 
                         thumbnail:
-                            thumbnailUrl,
+                            getThumbnailUrl(
+                                photo.id
+                            ),
 
                         large:
-                            largeUrl,
+                            getLargeImageUrl(
+                                photo.id
+                            ),
 
                         download:
                             getDownloadUrl(
-                                number
+                                photo.id
                             )
 
-                    });
+                    };
 
-                };
-
-
-            img.onerror =
-                function() {
-
-                    resolve(
-                        null
-                    );
-
-                };
+                }
+            );
 
 
-            img.src =
-                thumbnailUrl;
+        loading.style.display =
+            "none";
+
+
+        /*
+           写真が0枚だった場合
+        */
+
+        if (
+            allPhotos.length === 0
+        ) {
+
+            moreButton.style.display =
+                "none";
+
+            return;
 
         }
-    );
+
+
+        /*
+           最初の60枚を表示
+        */
+
+        loadMorePhotos();
+
+    }
+
+    catch (error) {
+
+        console.error(
+            error
+        );
+
+        loading.style.display =
+            "none";
+
+        moreButton.style.display =
+            "none";
+
+        photos.innerHTML =
+            "<p style='text-align:center;'>" +
+            "写真を読み込めませんでした。" +
+            "</p>";
+
+    }
 
 }
 
 
 /* =========================================================
-   60枚をまとめて確認
+   写真を追加表示
 ========================================================= */
 
-async function loadMorePhotos() {
-
-
-    /*
-       二重クリック防止
-    */
+function loadMorePhotos() {
 
     if (
         isLoading
@@ -1275,13 +873,9 @@ async function loadMorePhotos() {
     }
 
 
-    /*
-       最大番号まで確認した
-    */
-
     if (
-        nextPhotoNumber >
-        MAX_PHOTOS
+        displayCount >=
+        allPhotos.length
     ) {
 
         moreButton.style.display =
@@ -1295,96 +889,33 @@ async function loadMorePhotos() {
     isLoading =
         true;
 
-
     moreButton.disabled =
         true;
-
 
     loading.style.display =
         "block";
 
 
-    /*
-       今回確認する範囲
-    */
-
     const start =
-        nextPhotoNumber;
+        displayCount;
 
 
     const end =
         Math.min(
             start +
-            PHOTOS_PER_LOAD -
-            1,
-            MAX_PHOTOS
+            PHOTOS_PER_LOAD,
+            allPhotos.length
         );
-
-
-    /*
-       ★重要★
-
-       60枚を全部同時に確認する。
-
-       前のコードのように
-
-       001 → 完了
-       002 → 完了
-       003 → 完了
-
-       と1枚ずつ待たない。
-    */
-
-    const promises = [];
 
 
     for (
         let i = start;
-        i <= end;
+        i < end;
         i++
     ) {
 
-        promises.push(
-            checkPhoto(i)
-        );
-
-    }
-
-
-    /*
-       全部の確認が終わるのを待つ
-    */
-
-    const results =
-        await Promise.all(
-            promises
-        );
-
-
-    /*
-       実際に存在した写真だけ取り出す
-
-       nullは存在しなかった写真
-    */
-
-    const validPhotos =
-        results.filter(
-            function(photo) {
-
-                return photo !== null;
-
-            }
-        );
-
-
-    /*
-       順番通りに追加
-    */
-
-    for (
-        const photo
-        of validPhotos
-    ) {
+        const photo =
+            allPhotos[i];
 
 
         const img =
@@ -1392,10 +923,6 @@ async function loadMorePhotos() {
                 "img"
             );
 
-
-        /*
-           一覧用URL
-        */
 
         img.src =
             photo.thumbnail;
@@ -1406,51 +933,17 @@ async function loadMorePhotos() {
             " 写真";
 
 
-        /*
-           lazy loading
-
-           画面に近づいた写真だけ
-           ブラウザが表示する
-        */
-
         img.loading =
             "lazy";
 
 
-        /*
-           現在の配列番号
-        */
-
-        const index =
-            photoData.length;
-
-
-        /*
-           データを保存
-        */
-
-        photoData.push(
-            photo
-        );
-
-
-        /*
-           クリックしたら拡大
-        */
-
         img.onclick =
             function() {
 
-                openPhoto(
-                    index
-                );
+                openPhoto(i);
 
             };
 
-
-        /*
-           写真を画面に追加
-        */
 
         photos.appendChild(
             img
@@ -1459,17 +952,9 @@ async function loadMorePhotos() {
     }
 
 
-    /*
-       次の番号へ
-    */
+    displayCount =
+        end;
 
-    nextPhotoNumber =
-        end + 1;
-
-
-    /*
-       読み込み終了
-    */
 
     loading.style.display =
         "none";
@@ -1483,28 +968,9 @@ async function loadMorePhotos() {
         false;
 
 
-    /*
-       今回の範囲で写真が1枚もなければ
-       もう続きがないと判断
-    */
-
     if (
-        validPhotos.length === 0
-    ) {
-
-        moreButton.style.display =
-            "none";
-
-    }
-
-
-    /*
-       最大番号まで到達
-    */
-
-    if (
-        nextPhotoNumber >
-        MAX_PHOTOS
+        displayCount >=
+        allPhotos.length
     ) {
 
         moreButton.style.display =
@@ -1519,15 +985,11 @@ async function loadMorePhotos() {
    写真を開く
 ========================================================= */
 
-function openPhoto(
-    index
-) {
-
+function openPhoto(index) {
 
     if (
-        index < 0
-        ||
-        index >= photoData.length
+        index < 0 ||
+        index >= allPhotos.length
     ) {
 
         return;
@@ -1535,50 +997,30 @@ function openPhoto(
     }
 
 
-    currentPhotoIndex =
+    currentDisplayIndex =
         index;
 
 
     const photo =
-        photoData[
-            currentPhotoIndex
+        allPhotos[
+            currentDisplayIndex
         ];
 
-
-    /*
-       高画質画像
-    */
 
     largePhoto.src =
         photo.large;
 
 
-    /*
-       保存
-    */
-
     saveButton.href =
         photo.download;
 
-
-    /*
-       表示
-    */
 
     modal.style.display =
         "flex";
 
 
-    /*
-       前後ボタン
-    */
-
     updateNavigation();
 
-
-    /*
-       次の写真を先読み
-    */
 
     preloadNextPhoto();
 
@@ -1589,10 +1031,7 @@ function openPhoto(
    前の写真
 ========================================================= */
 
-function showPreviousPhoto(
-    event
-) {
-
+function showPreviousPhoto(event) {
 
     if (
         event
@@ -1604,7 +1043,7 @@ function showPreviousPhoto(
 
 
     if (
-        currentPhotoIndex <= 0
+        currentDisplayIndex <= 0
     ) {
 
         return;
@@ -1613,7 +1052,7 @@ function showPreviousPhoto(
 
 
     openPhoto(
-        currentPhotoIndex - 1
+        currentDisplayIndex - 1
     );
 
 }
@@ -1623,10 +1062,7 @@ function showPreviousPhoto(
    次の写真
 ========================================================= */
 
-function showNextPhoto(
-    event
-) {
-
+function showNextPhoto(event) {
 
     if (
         event
@@ -1637,14 +1073,9 @@ function showNextPhoto(
     }
 
 
-    /*
-       今読み込まれている写真の
-       最後まで来た場合
-    */
-
     if (
-        currentPhotoIndex >=
-        photoData.length - 1
+        currentDisplayIndex >=
+        allPhotos.length - 1
     ) {
 
         return;
@@ -1652,19 +1083,25 @@ function showNextPhoto(
     }
 
 
+    /*
+       次の写真がまだ一覧に
+       表示されていなくても、
+       Google Driveから取得済みなら
+       そのまま表示できる
+    */
+
     openPhoto(
-        currentPhotoIndex + 1
+        currentDisplayIndex + 1
     );
 
 }
 
 
 /* =========================================================
-   前後ボタンの状態
+   前後ボタン
 ========================================================= */
 
 function updateNavigation() {
-
 
     const prevButton =
         document.getElementById(
@@ -1678,12 +1115,8 @@ function updateNavigation() {
         );
 
 
-    /*
-       最初の写真
-    */
-
     if (
-        currentPhotoIndex <= 0
+        currentDisplayIndex <= 0
     ) {
 
         prevButton.style.opacity =
@@ -1699,13 +1132,9 @@ function updateNavigation() {
     }
 
 
-    /*
-       最後の写真
-    */
-
     if (
-        currentPhotoIndex >=
-        photoData.length - 1
+        currentDisplayIndex >=
+        allPhotos.length - 1
     ) {
 
         nextButton.style.opacity =
@@ -1729,14 +1158,13 @@ function updateNavigation() {
 
 function preloadNextPhoto() {
 
-
     const nextIndex =
-        currentPhotoIndex + 1;
+        currentDisplayIndex + 1;
 
 
     if (
         nextIndex >=
-        photoData.length
+        allPhotos.length
     ) {
 
         return;
@@ -1745,7 +1173,7 @@ function preloadNextPhoto() {
 
 
     const nextPhoto =
-        photoData[
+        allPhotos[
             nextIndex
         ];
 
@@ -1783,7 +1211,6 @@ function closePhoto() {
 modal.onclick =
     function(event) {
 
-
         if (
             event.target ===
             modal
@@ -1804,11 +1231,6 @@ document.addEventListener(
     "keydown",
     function(event) {
 
-
-        /*
-           写真を開いていなければ何もしない
-        */
-
         if (
             modal.style.display !==
             "flex"
@@ -1818,10 +1240,6 @@ document.addEventListener(
 
         }
 
-
-        /*
-           左矢印
-        */
 
         if (
             event.key ===
@@ -1833,10 +1251,6 @@ document.addEventListener(
         }
 
 
-        /*
-           右矢印
-        */
-
         if (
             event.key ===
             "ArrowRight"
@@ -1846,10 +1260,6 @@ document.addEventListener(
 
         }
 
-
-        /*
-           Esc
-        */
 
         if (
             event.key ===
@@ -1868,17 +1278,14 @@ document.addEventListener(
    スマホ左右スワイプ
 ========================================================= */
 
-let touchStartX =
-    0;
+let touchStartX = 0;
 
-let touchStartY =
-    0;
+let touchStartY = 0;
 
 
 modal.addEventListener(
     "touchstart",
     function(event) {
-
 
         if (
             event.touches.length !== 1
@@ -1907,7 +1314,6 @@ modal.addEventListener(
     "touchend",
     function(event) {
 
-
         if (
             event.changedTouches.length !== 1
         ) {
@@ -1935,13 +1341,8 @@ modal.addEventListener(
             touchStartY;
 
 
-        /*
-           縦方向の操作なら無視
-        */
-
         if (
-            Math.abs(diffX) < 50
-            ||
+            Math.abs(diffX) < 50 ||
             Math.abs(diffX) <
             Math.abs(diffY)
         ) {
@@ -1951,11 +1352,6 @@ modal.addEventListener(
         }
 
 
-        /*
-           左へスワイプ
-           → 次の写真
-        */
-
         if (
             diffX < 0
         ) {
@@ -1963,12 +1359,6 @@ modal.addEventListener(
             showNextPhoto();
 
         }
-
-
-        /*
-           右へスワイプ
-           → 前の写真
-        */
 
         else {
 
@@ -1984,15 +1374,15 @@ modal.addEventListener(
 
 
 /* =========================================================
-   最初の60枚を読み込む
+   最初の写真を取得
 ========================================================= */
 
-loadMorePhotos();
+getPhotosFromDrive();
 
 
 </script>
 
-
 </body>
-
 </html>
+
+
