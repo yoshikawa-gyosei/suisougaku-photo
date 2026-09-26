@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="ja">
 
 <head>
@@ -26,11 +25,6 @@ body {
     background: #f4f6f8;
     color: #263238;
 }
-
-
-/* =========================================================
-   ヘッダー
-========================================================= */
 
 .header {
     background:
@@ -63,32 +57,17 @@ body {
     color: rgba(255,255,255,0.75);
 }
 
-
-/* =========================================================
-   メイン
-========================================================= */
-
 .container {
     max-width: 1250px;
     margin: 0 auto;
     padding: 35px 18px 60px;
 }
 
-
-/* =========================================================
-   写真グリッド
-========================================================= */
-
 .photos {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 10px;
 }
-
-
-/* =========================================================
-   写真
-========================================================= */
 
 .photos img {
     width: 100%;
@@ -108,11 +87,6 @@ body {
     transform: scale(1.015);
 }
 
-
-/* =========================================================
-   読み込み中
-========================================================= */
-
 .loading {
     text-align: center;
     margin: 25px 0;
@@ -120,11 +94,6 @@ body {
     font-size: 13px;
     display: none;
 }
-
-
-/* =========================================================
-   もっと見る
-========================================================= */
 
 .moreButton {
     display: block;
@@ -137,28 +106,16 @@ body {
     font-size: 14px;
     font-weight: bold;
     cursor: pointer;
-    transition:
-        background 0.2s,
-        transform 0.2s;
 }
 
 .moreButton:hover {
     background: #172a46;
 }
 
-.moreButton:active {
-    transform: scale(0.97);
-}
-
 .moreButton:disabled {
     opacity: 0.6;
     cursor: default;
 }
-
-
-/* =========================================================
-   メインに戻るボタン
-========================================================= */
 
 .backButton {
     display: block;
@@ -171,23 +128,11 @@ body {
     font-size: 15px;
     font-weight: bold;
     text-decoration: none;
-    transition:
-        background 0.2s,
-        transform 0.2s;
 }
 
 .backButton:hover {
     background: #243f63;
 }
-
-.backButton:active {
-    transform: scale(0.97);
-}
-
-
-/* =========================================================
-   写真拡大画面
-========================================================= */
 
 .modal {
     display: none;
@@ -204,11 +149,6 @@ body {
     touch-action: none;
 }
 
-
-/* =========================================================
-   大きな写真
-========================================================= */
-
 .modal img {
     max-width: 94%;
     max-height: 78%;
@@ -217,11 +157,6 @@ body {
     user-select: none;
     -webkit-user-drag: none;
 }
-
-
-/* =========================================================
-   閉じるボタン
-========================================================= */
 
 .close {
     position: absolute;
@@ -234,11 +169,6 @@ body {
     line-height: 1;
     z-index: 10;
 }
-
-
-/* =========================================================
-   前へ・次へ
-========================================================= */
 
 .photoPrev,
 .photoNext {
@@ -256,21 +186,6 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    transition:
-        background 0.2s,
-        transform 0.2s;
-}
-
-.photoPrev:hover,
-.photoNext:hover {
-    background: rgba(255,255,255,0.25);
-}
-
-.photoPrev:active,
-.photoNext:active {
-    transform:
-        translateY(-50%)
-        scale(0.94);
 }
 
 .photoPrev {
@@ -280,11 +195,6 @@ body {
 .photoNext {
     right: 18px;
 }
-
-
-/* =========================================================
-   保存ボタン
-========================================================= */
 
 .saveButton {
     margin-top: 20px;
@@ -296,23 +206,7 @@ body {
     font-weight: bold;
     text-decoration: none;
     display: inline-block;
-    transition:
-        background 0.2s,
-        transform 0.2s;
 }
-
-.saveButton:hover {
-    background: #eeeeee;
-}
-
-.saveButton:active {
-    transform: scale(0.97);
-}
-
-
-/* =========================================================
-   フッター
-========================================================= */
 
 .footer {
     background: #172a46;
@@ -331,11 +225,6 @@ body {
     margin: 0;
     font-size: 11px;
 }
-
-
-/* =========================================================
-   スマホ
-========================================================= */
 
 @media (max-width: 600px) {
 
@@ -379,7 +268,6 @@ body {
         width: 44px;
         height: 44px;
         font-size: 25px;
-        background: rgba(255,255,255,0.10);
     }
 
     .photoPrev {
@@ -401,11 +289,6 @@ body {
     }
 }
 
-
-/* =========================================================
-   とても小さいスマホ
-========================================================= */
-
 @media (max-width: 360px) {
 
     .photos {
@@ -422,124 +305,117 @@ body {
 }
 
 </style>
-
 </head>
 
 <body>
 
 <header class="header">
 
-```
-<div class="header-sub">
-    TOKAI GYOSEI
-</div>
+    <div class="header-sub">
+        TOKAI GYOSEI
+    </div>
 
-<h1>
-    🎺 東海ウィンドフェスティバル
-</h1>
+    <h1>
+        🎺 東海ウィンドフェスティバル
+    </h1>
 
-<div class="header-date">
-    2026.05.05　｜　フェニーチェ堺
-</div>
-```
+    <div class="header-date">
+        2026.05.05　｜　フェニーチェ堺
+    </div>
 
 </header>
 
+
 <main class="container">
 
-```
-<div
-    class="photos"
-    id="photos"
-></div>
+    <div
+        class="photos"
+        id="photos"
+    ></div>
 
-<div
-    class="loading"
-    id="loading"
->
-    写真を読み込んでいます…
-</div>
+    <div
+        class="loading"
+        id="loading"
+    >
+        写真を読み込んでいます…
+    </div>
 
-<button
-    class="moreButton"
-    id="moreButton"
-    onclick="loadMorePhotos()"
->
-    もっと写真を見る ↓
-</button>
+    <button
+        class="moreButton"
+        id="moreButton"
+        onclick="loadMorePhotos()"
+    >
+        もっと写真を見る ↓
+    </button>
 
-<a
-    href="../index.html"
-    class="backButton"
->
-    ← メインに戻る
-</a>
-```
+    <a
+        href="../index.html"
+        class="backButton"
+    >
+        ← メインに戻る
+    </a>
 
 </main>
+
 
 <div
     class="modal"
     id="modal"
 >
 
-```
-<span
-    class="close"
-    onclick="closePhoto()"
->
-    ×
-</span>
+    <span
+        class="close"
+        onclick="closePhoto()"
+    >
+        ×
+    </span>
 
-<button
-    class="photoPrev"
-    id="photoPrev"
-    onclick="showPreviousPhoto(event)"
-    aria-label="前の写真"
->
-    ‹
-</button>
+    <button
+        class="photoPrev"
+        id="photoPrev"
+        onclick="showPreviousPhoto(event)"
+    >
+        ‹
+    </button>
 
-<img
-    id="largePhoto"
-    alt="拡大写真"
->
+    <img
+        id="largePhoto"
+        alt="拡大写真"
+    >
 
-<button
-    class="photoNext"
-    id="photoNext"
-    onclick="showNextPhoto(event)"
-    aria-label="次の写真"
->
-    ›
-</button>
+    <button
+        class="photoNext"
+        id="photoNext"
+        onclick="showNextPhoto(event)"
+    >
+        ›
+    </button>
 
-<a
-    id="saveButton"
-    class="saveButton"
-    href="#"
-    target="_blank"
-    rel="noopener"
->
-    📥 写真を保存
-</a>
-```
+    <a
+        id="saveButton"
+        class="saveButton"
+        href="#"
+        target="_blank"
+        rel="noopener"
+    >
+        📥 写真を保存
+    </a>
 
 </div>
+
 
 <footer class="footer">
 
-```
-<div class="footer-title">
-    TOKAI GYOSEI
-</div>
+    <div class="footer-title">
+        TOKAI GYOSEI
+    </div>
 
-<p>
-    Symphonic Band Photo Gallery
-</p>
-```
+    <p>
+        Symphonic Band Photo Gallery
+    </p>
 
 </footer>
+
 
 <script>
 
@@ -548,20 +424,11 @@ body {
    ★ 行事ごとに変更する場所
 ========================================================= */
 
-
-/* 行事名 */
-
 const EVENT_NAME =
     "東海ウィンドフェスティバル";
 
-
-/* 日付 */
-
 const EVENT_DATE =
     "2026.05.05";
-
-
-/* 会場 */
 
 const EVENT_PLACE =
     "フェニーチェ堺";
@@ -569,8 +436,6 @@ const EVENT_PLACE =
 
 /*
    Google Apps ScriptのURL
-
-   今回作ったWebアプリのURL
 */
 
 const GOOGLE_SCRIPT_URL =
@@ -579,8 +444,6 @@ const GOOGLE_SCRIPT_URL =
 
 /*
    1回に表示する写真枚数
-
-   60枚ずつ表示
 */
 
 const PHOTOS_PER_LOAD =
@@ -588,22 +451,17 @@ const PHOTOS_PER_LOAD =
 
 
 /* =========================================================
-   ★ ここから下は基本的に変更しない
+   ここから下は基本的に変更しない
 ========================================================= */
-
-
-/* ページ情報 */
 
 document.title =
     EVENT_NAME +
     " | Photo Gallery";
 
-
 document.querySelector(
     ".header h1"
 ).textContent =
     "🎺 " + EVENT_NAME;
-
 
 document.querySelector(
     ".header-date"
@@ -613,45 +471,24 @@ document.querySelector(
     EVENT_PLACE;
 
 
-/* 要素 */
-
 const photos =
-    document.getElementById(
-        "photos"
-    );
-
+    document.getElementById("photos");
 
 const modal =
-    document.getElementById(
-        "modal"
-    );
-
+    document.getElementById("modal");
 
 const largePhoto =
-    document.getElementById(
-        "largePhoto"
-    );
-
+    document.getElementById("largePhoto");
 
 const saveButton =
-    document.getElementById(
-        "saveButton"
-    );
-
+    document.getElementById("saveButton");
 
 const moreButton =
-    document.getElementById(
-        "moreButton"
-    );
-
+    document.getElementById("moreButton");
 
 const loading =
-    document.getElementById(
-        "loading"
-    );
+    document.getElementById("loading");
 
-
-/* 現在の状態 */
 
 let allPhotos = [];
 
@@ -663,16 +500,8 @@ let isLoading = false;
 
 
 /* =========================================================
-   Google Driveの写真URL
+   Google Drive URL
 ========================================================= */
-
-
-/*
-   一覧用
-
-   Google Driveの画像を
-   サムネイルとして表示
-*/
 
 function getThumbnailUrl(id) {
 
@@ -685,10 +514,6 @@ function getThumbnailUrl(id) {
 }
 
 
-/*
-   拡大用
-*/
-
 function getLargeImageUrl(id) {
 
     return (
@@ -699,12 +524,6 @@ function getLargeImageUrl(id) {
 
 }
 
-
-/*
-   保存用
-
-   Google Driveの画像を開くURL
-*/
 
 function getDownloadUrl(id) {
 
@@ -744,17 +563,6 @@ async function getPhotosFromDrive() {
             await response.json();
 
 
-        /*
-           名前順に並べる
-
-           001
-           002
-           003
-           ...
-
-           の順番になる
-        */
-
         data.sort(
             function(a, b) {
 
@@ -769,11 +577,6 @@ async function getPhotosFromDrive() {
             }
         );
 
-
-        /*
-           Google Driveのデータを
-           サイト用データに変換
-        */
 
         allPhotos =
             data.map(
@@ -812,10 +615,6 @@ async function getPhotosFromDrive() {
             "none";
 
 
-        /*
-           写真が0枚だった場合
-        */
-
         if (
             allPhotos.length === 0
         ) {
@@ -828,19 +627,13 @@ async function getPhotosFromDrive() {
         }
 
 
-        /*
-           最初の60枚を表示
-        */
-
         loadMorePhotos();
 
     }
 
     catch (error) {
 
-        console.error(
-            error
-        );
+        console.error(error);
 
         loading.style.display =
             "none";
@@ -864,9 +657,7 @@ async function getPhotosFromDrive() {
 
 function loadMorePhotos() {
 
-    if (
-        isLoading
-    ) {
+    if (isLoading) {
 
         return;
 
@@ -899,7 +690,6 @@ function loadMorePhotos() {
     const start =
         displayCount;
 
-
     const end =
         Math.min(
             start +
@@ -927,11 +717,9 @@ function loadMorePhotos() {
         img.src =
             photo.thumbnail;
 
-
         img.alt =
             EVENT_NAME +
             " 写真";
-
 
         img.loading =
             "lazy";
@@ -945,9 +733,7 @@ function loadMorePhotos() {
             };
 
 
-        photos.appendChild(
-            img
-        );
+        photos.appendChild(img);
 
     }
 
@@ -959,10 +745,8 @@ function loadMorePhotos() {
     loading.style.display =
         "none";
 
-
     isLoading =
         false;
-
 
     moreButton.disabled =
         false;
@@ -1010,7 +794,6 @@ function openPhoto(index) {
     largePhoto.src =
         photo.large;
 
-
     saveButton.href =
         photo.download;
 
@@ -1020,7 +803,6 @@ function openPhoto(index) {
 
 
     updateNavigation();
-
 
     preloadNextPhoto();
 
@@ -1033,9 +815,7 @@ function openPhoto(index) {
 
 function showPreviousPhoto(event) {
 
-    if (
-        event
-    ) {
+    if (event) {
 
         event.stopPropagation();
 
@@ -1064,9 +844,7 @@ function showPreviousPhoto(event) {
 
 function showNextPhoto(event) {
 
-    if (
-        event
-    ) {
+    if (event) {
 
         event.stopPropagation();
 
@@ -1082,13 +860,6 @@ function showNextPhoto(event) {
 
     }
 
-
-    /*
-       次の写真がまだ一覧に
-       表示されていなくても、
-       Google Driveから取得済みなら
-       そのまま表示できる
-    */
 
     openPhoto(
         currentDisplayIndex + 1
@@ -1107,7 +878,6 @@ function updateNavigation() {
         document.getElementById(
             "photoPrev"
         );
-
 
     const nextButton =
         document.getElementById(
@@ -1172,31 +942,24 @@ function preloadNextPhoto() {
     }
 
 
-    const nextPhoto =
-        allPhotos[
-            nextIndex
-        ];
-
-
     const preload =
         new Image();
 
 
     preload.src =
-        nextPhoto.large;
+        allPhotos[nextIndex].large;
 
 }
 
 
 /* =========================================================
-   写真を閉じる
+   閉じる
 ========================================================= */
 
 function closePhoto() {
 
     modal.style.display =
         "none";
-
 
     largePhoto.src =
         "";
@@ -1224,7 +987,7 @@ modal.onclick =
 
 
 /* =========================================================
-   PCキーボード操作
+   キーボード
 ========================================================= */
 
 document.addEventListener(
@@ -1275,7 +1038,7 @@ document.addEventListener(
 
 
 /* =========================================================
-   スマホ左右スワイプ
+   スマホスワイプ
 ========================================================= */
 
 let touchStartX = 0;
@@ -1298,7 +1061,6 @@ modal.addEventListener(
 
         touchStartX =
             event.touches[0].clientX;
-
 
         touchStartY =
             event.touches[0].clientY;
@@ -1326,15 +1088,12 @@ modal.addEventListener(
         const endX =
             event.changedTouches[0].clientX;
 
-
         const endY =
             event.changedTouches[0].clientY;
-
 
         const diffX =
             endX -
             touchStartX;
-
 
         const diffY =
             endY -
@@ -1352,9 +1111,7 @@ modal.addEventListener(
         }
 
 
-        if (
-            diffX < 0
-        ) {
+        if (diffX < 0) {
 
             showNextPhoto();
 
@@ -1374,7 +1131,7 @@ modal.addEventListener(
 
 
 /* =========================================================
-   最初の写真を取得
+   開始
 ========================================================= */
 
 getPhotosFromDrive();
