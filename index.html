@@ -461,7 +461,8 @@ body {
     <!-- 東海ウィンドフェスティバル -->
     <div class="event-card">
         <div class="event-icon">
-            <img src="https://drive.google.com/thumbnail?id=1d0umhdziZ6o4UJh83XrGa4Bnff1IRl8J&sz=w1000" alt="東海ウィンドフェスティバル">
+            <!-- ファイル名だけで自動設定されます -->
+            <img id="wind-icon" src="" alt="東海ウィンドフェスティバル">
         </div>
         <div class="event-info">
             <h3>東海ウィンドフェスティバル</h3>
@@ -475,8 +476,8 @@ body {
     <!-- きらめきコンサート -->
     <div class="event-card">
         <div class="event-icon">
-            <!-- 修正：Googleドライブのきらめきコンサートの写真IDを設定 -->
-            <img src="https://drive.google.com/thumbnail?id=1oWxOypLf38QhfWYUbrbjAncgcF9rvrJY&sz=w1000" alt="きらめきコンサート">
+            <!-- ファイル名だけで自動設定されます -->
+            <img id="kirameki-icon" src="" alt="きらめきコンサート">
         </div>
         <div class="event-info">
             <h3>きらめきコンサート</h3>
@@ -567,6 +568,32 @@ document.getElementById("passwordInput").addEventListener("keydown", function(ev
 if (sessionStorage.getItem("galleryAuth") === "true") {
     document.getElementById("passwordScreen").style.display = "none";
 }
+
+// --- すべてのアイコンをファイル名（番号）だけで指定する仕組み ---
+window.addEventListener("DOMContentLoaded", function() {
+    // ★ここを変えるだけで、それぞれのアイコン写真を自由に変更できます！
+    const iconSettings = {
+        "wind-icon": "01_242.jpg",     // 東海ウィンドフェスティバルの写真番号
+        "kirameki-icon": "066.jpg"  // きらめきコンサートの写真番号
+    };
+
+    const gasUrl = "https://script.google.com/macros/s/AKfycbxPVEwqJatHJnJwDaaTyXDEtfjuVWNkOn-fHDXI4WpH6K2vAk7w0w2V-LBB8Qo0n0ge/exec";
+
+    fetch(gasUrl)
+        .then(response => response.json())
+        .then(data => {
+            for (const [elementId, fileName] of Object.entries(iconSettings)) {
+                const target = data.find(item => item.name === fileName);
+                if (target) {
+                    const imgTag = document.getElementById(elementId);
+                    if (imgTag) {
+                        imgTag.src = "https://drive.google.com/thumbnail?id=" + target.id + "&sz=w1000";
+                    }
+                }
+            }
+        })
+        .catch(err => console.log("アイコン読み込みエラー", err));
+});
 </script>
 
 </body>
