@@ -5,11 +5,9 @@
 
 <meta charset="UTF-8">
 
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>東海大学付属大阪仰星高等学校吹奏楽部 PHOTO GALLERY</title>
-
 
 <style>
 
@@ -22,9 +20,7 @@
 }
 
 body {
-
     margin: 0;
-
     font-family:
         -apple-system,
         BlinkMacSystemFont,
@@ -32,1309 +28,546 @@ body {
         "Hiragino Kaku Gothic ProN",
         "Yu Gothic",
         sans-serif;
-
     background: #f4f6f8;
-
     color: #263238;
-
 }
-
 
 /* =========================
    最初・行事パスワード画面
 ========================= */
 
 .password-screen {
-
     position: fixed;
-
     inset: 0;
-
     background:
         linear-gradient(
             135deg,
             #172a46,
             #243f63
         );
-
     display: flex;
-
     align-items: center;
-
     justify-content: center;
-
     padding: 20px;
-
     z-index: 9999;
-
 }
 
-
 .password-box {
-
     width: 100%;
-
     max-width: 430px;
-
     background: white;
-
     border-radius: 22px;
-
     padding: 42px 30px;
-
     text-align: center;
-
     box-shadow:
         0 15px 45px
         rgba(0,0,0,0.25);
-
 }
-
 
 .password-logo {
-
     font-size: 38px;
-
     margin-bottom: 15px;
-
 }
-
 
 .password-sub {
-
     font-size: 11px;
-
     letter-spacing: 4px;
-
     color: #a07a35;
-
     font-weight: bold;
-
     margin-bottom: 10px;
-
 }
-
 
 .password-box h1 {
-
     margin: 0;
-
     font-size: 23px;
-
     color: #26384f;
-
 }
-
 
 .password-description {
-
-    margin:
-        14px 0 25px;
-
+    margin: 14px 0 25px;
     color: #7a858f;
-
     font-size: 13px;
-
     line-height: 1.7;
-
 }
-
 
 /* 入力欄 */
 
 .password-input {
-
     width: 100%;
-
     padding: 15px;
-
-    border:
-        1px solid #d7dde3;
-
+    border: 1px solid #d7dde3;
     border-radius: 10px;
-
     font-size: 17px;
-
     text-align: center;
-
     outline: none;
-
 }
 
-
 .password-input:focus {
-
     border-color: #263f62;
-
     box-shadow:
         0 0 0 3px
         rgba(38,63,98,0.10);
-
 }
-
 
 /* ボタン */
 
 .password-button {
-
     width: 100%;
-
     margin-top: 14px;
-
     padding: 14px;
-
     border: none;
-
     border-radius: 10px;
-
     background: #263f62;
-
     color: white;
-
     font-size: 15px;
-
     font-weight: bold;
-
     cursor: pointer;
-
 }
-
 
 .password-button:hover {
-
     background: #172a46;
-
 }
-
 
 /* キャンセル */
 
 .password-cancel {
-
     width: 100%;
-
     margin-top: 10px;
-
     padding: 12px;
-
     border: none;
-
     border-radius: 10px;
-
     background: #eef2f7;
-
     color: #536273;
-
     font-size: 14px;
-
     cursor: pointer;
-
 }
-
 
 .password-cancel:hover {
-
     background: #e2e7ed;
-
 }
-
 
 /* エラー */
 
 .password-error {
-
     min-height: 20px;
-
     margin-top: 12px;
-
     color: #c0392b;
-
     font-size: 13px;
-
 }
-
 
 /* =========================
    ヘッダー
 ========================= */
 
 .header {
-
     background:
         linear-gradient(
             135deg,
             #172a46,
             #243f63
         );
-
     color: white;
-
-    padding:
-        55px 20px
-        45px;
-
+    padding: 55px 20px 45px;
     text-align: center;
-
 }
-
 
 .header-sub {
-
     font-size: 13px;
-
     letter-spacing: 4px;
-
     opacity: 0.75;
-
     margin-bottom: 12px;
-
 }
-
 
 .header h1 {
-
     margin: 0;
-
     font-size: 30px;
-
     letter-spacing: 1px;
-
 }
-
 
 .header-description {
-
-    margin:
-        16px auto
-        0;
-
+    margin: 16px auto 0;
     max-width: 500px;
-
     line-height: 1.8;
-
     font-size: 14px;
-
-    color:
-        rgba(255,255,255,0.82);
-
+    color: rgba(255,255,255,0.82);
 }
-
 
 /* =========================
    メイン
 ========================= */
 
 .container {
-
     max-width: 850px;
-
-    margin:
-        0 auto;
-
-    padding:
-        45px 18px
-        70px;
-
+    margin: 0 auto;
+    padding: 45px 18px 70px;
 }
-
 
 /* =========================
    セクションタイトル
 ========================= */
 
 .section-title {
-
     text-align: center;
-
     margin-bottom: 30px;
-
 }
-
 
 .section-title span {
-
     display: block;
-
     font-size: 12px;
-
     letter-spacing: 3px;
-
     color: #a07a35;
-
     font-weight: bold;
-
     margin-bottom: 7px;
-
 }
-
 
 .section-title h2 {
-
     margin: 0;
-
     font-size: 24px;
-
     color: #26384f;
-
 }
-
 
 /* =========================
    行事カード
 ========================= */
 
 .event-card {
-
     background: white;
-
     border-radius: 18px;
-
     padding: 26px;
-
     margin-bottom: 18px;
-
-    box-shadow:
-        0 5px 18px
-        rgba(0,0,0,0.07);
-
+    box-shadow: 0 5px 18px rgba(0,0,0,0.07);
     display: flex;
-
     align-items: center;
-
     gap: 20px;
-
-    transition:
-        transform 0.2s,
-        box-shadow 0.2s;
-
+    transition: transform 0.2s, box-shadow 0.2s;
 }
-
 
 .event-card:hover {
-
-    transform:
-        translateY(-3px);
-
-    box-shadow:
-        0 9px 25px
-        rgba(0,0,0,0.11);
-
+    transform: translateY(-3px);
+    box-shadow: 0 9px 25px rgba(0,0,0,0.11);
 }
-
 
 /* =========================
    行事写真
 ========================= */
 
 .event-icon {
-
     width: 100px;
-
     height: 75px;
-
     flex-shrink: 0;
-
     border-radius: 12px;
-
     overflow: hidden;
-
     background: #eef2f7;
-
 }
-
 
 .event-icon img {
-
     width: 100%;
-
     height: 100%;
-
     object-fit: cover;
-
     display: block;
-
 }
-
 
 /* =========================
    行事情報
 ========================= */
 
 .event-info {
-
     flex: 1;
-
 }
-
 
 .event-info h3 {
-
-    margin:
-        0 0 7px;
-
+    margin: 0 0 7px;
     font-size: 19px;
-
     color: #26384f;
-
 }
-
 
 .event-info p {
-
     margin: 0;
-
     font-size: 14px;
-
     color: #7a858f;
-
     line-height: 1.6;
-
 }
-
 
 /* =========================
    ボタン
 ========================= */
 
 .btn {
-
     display: inline-flex;
-
     align-items: center;
-
     justify-content: center;
-
     gap: 8px;
-
-    padding:
-        13px 20px;
-
+    padding: 13px 20px;
     min-width: 120px;
-
     background: #263f62;
-
     color: white;
-
     text-decoration: none;
-
     border: none;
-
     border-radius: 10px;
-
     font-weight: bold;
-
     font-size: 14px;
-
     cursor: pointer;
-
-    transition:
-        background 0.2s,
-        transform 0.2s;
-
+    transition: background 0.2s, transform 0.2s;
 }
-
 
 .btn:hover {
-
     background: #172a46;
-
 }
-
 
 .btn:active {
-
-    transform:
-        scale(0.97);
-
+    transform: scale(0.97);
 }
-
 
 /* =========================
    フッター
 ========================= */
 
 .footer {
-
     text-align: center;
-
-    padding:
-        35px 20px;
-
+    padding: 35px 20px;
     background: #172a46;
-
-    color:
-        rgba(255,255,255,0.7);
-
+    color: rgba(255,255,255,0.7);
 }
-
 
 .footer-title {
-
     font-size: 13px;
-
     letter-spacing: 3px;
-
     margin-bottom: 10px;
-
 }
-
 
 .footer p {
-
     margin: 0;
-
     font-size: 12px;
-
 }
-
 
 /* =========================
    スマホ
 ========================= */
 
 @media (max-width: 600px) {
-
     .header {
-
-        padding:
-            42px 18px
-            38px;
-
+        padding: 42px 18px 38px;
     }
-
-
     .header-sub {
-
         font-size: 11px;
-
         letter-spacing: 3px;
-
     }
-
-
     .header h1 {
-
         font-size: 24px;
-
     }
-
-
     .header-description {
-
         font-size: 13px;
-
     }
-
-
     .container {
-
-        padding:
-            35px 12px
-            55px;
-
+        padding: 35px 12px 55px;
     }
-
-
     .section-title {
-
         margin-bottom: 22px;
-
     }
-
-
     .section-title h2 {
-
         font-size: 21px;
-
     }
-
-
     .event-card {
-
         padding: 20px;
-
         border-radius: 16px;
-
         gap: 14px;
-
     }
-
-
     .event-icon {
-
         width: 85px;
-
         height: 64px;
-
         border-radius: 10px;
-
     }
-
-
     .event-info h3 {
-
         font-size: 16px;
-
     }
-
-
     .event-info p {
-
         font-size: 12px;
-
     }
-
-
     .btn {
-
         min-width: auto;
-
-        padding:
-            11px 14px;
-
+        padding: 11px 14px;
         font-size: 12px;
-
     }
-
-
     .password-box {
-
-        padding:
-            36px 22px;
-
+        padding: 36px 22px;
     }
-
 }
 
-
 @media (max-width: 400px) {
-
     .event-card {
-
         flex-wrap: wrap;
-
     }
-
-
     .event-info {
-
-        min-width:
-            calc(100% - 65px);
-
+        min-width: calc(100% - 65px);
     }
-
-
     .btn {
-
         width: 100%;
-
     }
-
 }
 
 </style>
 
 </head>
 
-
 <body>
-
 
 <!-- =========================
      パスワード画面
 ========================= -->
-
-<div
-    class="password-screen"
-    id="passwordScreen"
->
-
+<div class="password-screen" id="passwordScreen">
     <div class="password-box">
-
-        <div
-            class="password-logo"
-            id="passwordLogo"
-        >
-            🐬
-        </div>
-
-
-        <div class="password-sub">
-
-            TOKAI GYOSEI
-
-        </div>
-
-
-        <h1 id="passwordTitle">
-
-            PHOTO GALLERY
-
-        </h1>
-
-
-        <p
-            class="password-description"
-            id="passwordDescription"
-        >
-
-            写真ギャラリーをご覧いただくには<br>
-            パスワードを入力してください。
-
+        <div class="password-logo" id="passwordLogo">🐬</div>
+        <div class="password-sub">TOKAI GYOSEI</div>
+        <h1 id="passwordTitle">PHOTO GALLERY</h1>
+        <p class="password-description" id="passwordDescription">
+            写真ギャラリーをご覧いただくには<br>パスワードを入力してください。
         </p>
 
+        <input type="text" id="passwordInput" class="password-input" placeholder="パスワードを入力" autocomplete="off">
 
-        <!--
-            type="text"
-            にしているので
-            東海・京都駅なども
-            ●●●にならず見える
-        -->
-
-        <input
-
-            type="text"
-
-            id="passwordInput"
-
-            class="password-input"
-
-            placeholder="パスワードを入力"
-
-            autocomplete="off"
-
-        >
-
-
-        <button
-
-            class="password-button"
-
-            onclick="checkPassword()"
-
-        >
-
-            <span id="passwordButtonText">
-
-                ギャラリーを見る →
-
-            </span>
-
+        <button class="password-button" onclick="checkPassword()">
+            <span id="passwordButtonText">ギャラリーを見る →</span>
         </button>
 
-
-        <button
-
-            class="password-cancel"
-
-            id="passwordCancel"
-
-            onclick="cancelEventPassword()"
-
-            style="display:none;"
-
-        >
-
+        <button class="password-cancel" id="passwordCancel" onclick="cancelEventPassword()" style="display:none;">
             ← 行事選択に戻る
-
         </button>
 
-
-        <div
-
-            class="password-error"
-
-            id="passwordError"
-
-        ></div>
-
+        <div class="password-error" id="passwordError"></div>
     </div>
-
 </div>
-
-
 
 <!-- =========================
      ヘッダー
 ========================= -->
-
 <header class="header">
-
-    <div class="header-sub">
-
-        TOKAI GYOSEI
-
-    </div>
-
-
-    <h1>
-
-        東海大学付属大阪仰星高等学校吹奏楽部
-
-    </h1>
-
-
+    <div class="header-sub">TOKAI GYOSEI</div>
+    <h1>東海大学付属大阪仰星高等学校吹奏楽部</h1>
     <p class="header-description">
-
         PHOTO GALLERY<br>
-
         吹奏楽部の本番・行事の写真をご覧いただけます。
-
     </p>
-
 </header>
-
-
 
 <!-- =========================
      メイン
 ========================= -->
-
 <main class="container">
-
-
     <div class="section-title">
-
         <span>EVENT PHOTO</span>
-
         <h2>行事を選択してください</h2>
-
     </div>
 
-
-
-    <!-- =========================
-         東海ウィンドフェスティバル
-    ========================= -->
-
+    <!-- 東海ウィンドフェスティバル -->
     <div class="event-card">
-
-
         <div class="event-icon">
-
-            <img
-                src="https://res.cloudinary.com/avfwub8z/image/upload/01_001.jpg"
-                alt="東海ウィンドフェスティバル"
-            >
-
+            <img src="https://drive.google.com/thumbnail?id=1d0umhdziZ6o4UJh83XrGa4Bnff1IRl8J&sz=w1000" alt="東海ウィンドフェスティバル">
         </div>
-
-
         <div class="event-info">
-
-            <h3>
-
-                東海ウィンドフェスティバル
-
-            </h3>
-
-
-            <p>
-
-                2026.05.05　｜　フェニーチェ堺
-
-            </p>
-
+            <h3>東海ウィンドフェスティバル</h3>
+            <p>2026.05.05 ｜ フェニーチェ堺</p>
         </div>
-
-
-        <button
-
-            class="btn"
-
-            onclick="
-
-                openEventPassword(
-
-                    '東海ウィンドフェスティバル',
-
-                    '東海',
-
-                    '20260505東海ウィンドフェスティバル写真/photo.html'
-
-                )
-
-            "
-
-        >
-
+        <button class="btn" onclick="openEventPassword('東海ウィンドフェスティバル', '東海', '20260505東海ウィンドフェスティバル写真/photo.html')">
             写真を見る →
-
         </button>
-
-
     </div>
 
-
-
-    <!-- =========================
-         きらめきコンサート
-    ========================= -->
-
+    <!-- きらめきコンサート -->
     <div class="event-card">
-
-
         <div class="event-icon">
-
-            <img
-                src="https://res.cloudinary.com/avfwub8z/image/upload/058.jpg"
-                alt="きらめきコンサート"
-            >
-
+            <!-- 修正：Googleドライブのきらめきコンサートの写真IDを設定 -->
+            <img src="https://drive.google.com/thumbnail?id=1oWxOypLf38QhfWYUbrbjAncgcF9rvrJY&sz=w1000" alt="きらめきコンサート">
         </div>
-
-
         <div class="event-info">
-
-            <h3>
-
-                きらめきコンサート
-
-            </h3>
-
-
-            <p>
-
-                2026.06.07　｜　京都駅
-
-            </p>
-
+            <h3>きらめきコンサート</h3>
+            <p>2026.06.07 ｜ 京都駅</p>
         </div>
-
-
-        <button
-
-            class="btn"
-
-            onclick="
-
-                openEventPassword(
-
-                    'きらめきコンサート',
-
-                    '京都駅',
-
-                    '20260607きらめきコンサート/photo.html'
-
-                )
-
-            "
-
-        >
-
+        <button class="btn" onclick="openEventPassword('きらめきコンサート', '京都駅', '20260607きらめきコンサート/photo.html')">
             写真を見る →
-
         </button>
-
-
     </div>
-
-
 </main>
-
-
 
 <!-- =========================
      フッター
 ========================= -->
-
 <footer class="footer">
-
-    <div class="footer-title">
-
-        TOKAI GYOSEI
-
-    </div>
-
-
-    <p>
-
-        Symphonic Band Photo Gallery
-
-    </p>
-
+    <div class="footer-title">TOKAI GYOSEI</div>
+    <p>Symphonic Band Photo Gallery</p>
 </footer>
 
-
-
 <script>
-
-
-/* =========================
-   現在のパスワード種類
-========================= */
-
 let passwordMode = "main";
-
-
 let selectedFolder = "";
 
-
-/* =========================
-   最初のパスワード
-========================= */
-
 function checkMainPassword() {
+    const input = document.getElementById("passwordInput").value;
+    const error = document.getElementById("passwordError");
 
-    const input =
-        document.getElementById(
-            "passwordInput"
-        ).value;
-
-
-    const error =
-        document.getElementById(
-            "passwordError"
-        );
-
-
-    if (
-        input === "gyosei2026"
-    ) {
-
-        sessionStorage.setItem(
-            "galleryAuth",
-            "true"
-        );
-
-
-        document.getElementById(
-            "passwordScreen"
-        ).style.display = "none";
-
-
+    if (input === "gyosei2026") {
+        sessionStorage.setItem("galleryAuth", "true");
+        document.getElementById("passwordScreen").style.display = "none";
         error.textContent = "";
-
-
-        document.getElementById(
-            "passwordInput"
-        ).value = "";
-
+        document.getElementById("passwordInput").value = "";
+    } else {
+        error.textContent = "パスワードが違います。";
     }
-
-    else {
-
-        error.textContent =
-            "パスワードが違います。";
-
-    }
-
 }
 
-
-
-/* =========================
-   行事パスワード画面を開く
-========================= */
-
-function openEventPassword(
-
-    eventName,
-
-    correctPassword,
-
-    folderPath
-
-) {
-
+function openEventPassword(eventName, correctPassword, folderPath) {
     passwordMode = "event";
-
     selectedFolder = folderPath;
+    window.correctEventPassword = correctPassword;
 
-    window.correctEventPassword =
-        correctPassword;
+    document.getElementById("passwordLogo").textContent = "📷";
+    document.getElementById("passwordTitle").textContent = eventName;
+    document.getElementById("passwordDescription").innerHTML = "この行事の写真をご覧いただくには<br>パスワードを入力してください。";
+    document.getElementById("passwordButtonText").textContent = "写真を見る →";
+    document.getElementById("passwordCancel").style.display = "block";
+    document.getElementById("passwordInput").value = "";
+    document.getElementById("passwordError").textContent = "";
+    document.getElementById("passwordScreen").style.display = "flex";
 
-
-    document.getElementById(
-        "passwordLogo"
-    ).textContent = "📷";
-
-
-    document.getElementById(
-        "passwordTitle"
-    ).textContent =
-        eventName;
-
-
-    document.getElementById(
-        "passwordDescription"
-    ).innerHTML =
-        "この行事の写真をご覧いただくには<br>" +
-        "パスワードを入力してください。";
-
-
-    document.getElementById(
-        "passwordButtonText"
-    ).textContent =
-        "写真を見る →";
-
-
-    document.getElementById(
-        "passwordCancel"
-    ).style.display =
-        "block";
-
-
-    document.getElementById(
-        "passwordInput"
-    ).value = "";
-
-
-    document.getElementById(
-        "passwordError"
-    ).textContent = "";
-
-
-    document.getElementById(
-        "passwordScreen"
-    ).style.display =
-        "flex";
-
-
-    setTimeout(
-        function() {
-
-            document.getElementById(
-                "passwordInput"
-            ).focus();
-
-        },
-        100
-    );
-
+    setTimeout(function() {
+        document.getElementById("passwordInput").focus();
+    }, 100);
 }
-
-
-
-/* =========================
-   パスワード確認
-========================= */
 
 function checkPassword() {
+    const input = document.getElementById("passwordInput").value;
+    const error = document.getElementById("passwordError");
 
-    const input =
-        document.getElementById(
-            "passwordInput"
-        ).value;
-
-
-    const error =
-        document.getElementById(
-            "passwordError"
-        );
-
-
-    /* メイン */
-
-    if (
-        passwordMode === "main"
-    ) {
-
+    if (passwordMode === "main") {
         checkMainPassword();
-
         return;
-
     }
 
-
-    /* 行事 */
-
-    if (
-        input ===
-        window.correctEventPassword
-    ) {
-
-        window.location.href =
-            selectedFolder;
-
+    if (input === window.correctEventPassword) {
+        window.location.href = selectedFolder;
+    } else {
+        error.textContent = "パスワードが違います。";
     }
-
-    else {
-
-        error.textContent =
-            "パスワードが違います。";
-
-    }
-
 }
-
-
-
-/* =========================
-   行事パスワードをキャンセル
-========================= */
 
 function cancelEventPassword() {
-
     passwordMode = "main";
-
     selectedFolder = "";
-
     window.correctEventPassword = "";
-
-
-    document.getElementById(
-        "passwordInput"
-    ).value = "";
-
-
-    document.getElementById(
-        "passwordError"
-    ).textContent = "";
-
-
-    document.getElementById(
-        "passwordScreen"
-    ).style.display =
-        "none";
-
+    document.getElementById("passwordInput").value = "";
+    document.getElementById("passwordError").textContent = "";
+    document.getElementById("passwordScreen").style.display = "none";
 }
 
+document.getElementById("passwordInput").addEventListener("keydown", function(event) {
+    if (event.key === "Enter") {
+        checkPassword();
+    }
+});
 
-
-/* =========================
-   Enterキー
-========================= */
-
-document
-    .getElementById("passwordInput")
-    .addEventListener(
-        "keydown",
-        function(event) {
-
-            if (
-                event.key === "Enter"
-            ) {
-
-                checkPassword();
-
-            }
-
-        }
-    );
-
-
-
-/* =========================
-   メインの認証状態
-========================= */
-
-if (
-    sessionStorage.getItem(
-        "galleryAuth"
-    ) === "true"
-) {
-
-    document.getElementById(
-        "passwordScreen"
-    ).style.display =
-        "none";
-
+if (sessionStorage.getItem("galleryAuth") === "true") {
+    document.getElementById("passwordScreen").style.display = "none";
 }
-
 </script>
 
-
 </body>
-
 </html>
